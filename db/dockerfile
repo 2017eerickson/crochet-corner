@@ -1,8 +1,8 @@
 FROM postgres:latest
 
-ENV POSTGRES_USER=cp_user
+ENV POSTGRES_USER=cc_user
 ENV POSTGRES_PASSWORD=password
-ENV POSTGRES_DB=task_db
+ENV POSTGRES_DB=cc_db
 
 EXPOSE 5432
 

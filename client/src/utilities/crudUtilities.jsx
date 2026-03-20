@@ -37,11 +37,12 @@ export const createTask = async(title)=>{
 }
 // url ="tasks/", data= [{task}{task}], repsonse = 200 | 500
 
-export const getAllTasks = async() => {
-    let token = localStorage.getItem("token")
-    api.defaults.headers.common['Authorization'] = `Token ${token}`
-    let response = await api.get("/tasks")
+export const getAllItems = async() => {
+    // let token = localStorage.getItem("token")
+    // api.defaults.headers.common['Authorization'] = `Token ${token}`
+    let response = await api.get("items/")
     if (response.status == 200){
+        print(response.data)
         return response.data
     }else{
         console.error(response.data)
