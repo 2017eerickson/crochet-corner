@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { handleUserAuth } from '../utilities/authUtilities';
 
 const AuthForm = ({setUser}) => {
 
@@ -10,15 +11,20 @@ const AuthForm = ({setUser}) => {
     const [create, setCreate] = useState(true)
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
         let userDict = {
-            email:email,
-            password: password
+            "email":email,
+            "password": password
         }
-        let method = create ? 'CREATE ACCT' : 'LOGIN ACCT'
-        console.log(userDict, method)
-        setUser(userDict.email)
+        // let method = create ? 'CREATE ACCT' : 'LOGIN ACCT'
+        let user = await handleUserAuth(userDict,create)
+        if (user === null){
+            console.log(`fit user: ${ user}`)
+            return 
+        }
+        
+        setUser(user) 
         setCreate(true)
         setEmail('')
         setPassword('')

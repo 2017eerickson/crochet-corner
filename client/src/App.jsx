@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './App.css'
+import { useNavigate, useLocation ,useLoaderData} from 'react-router-dom'
+// import {test_conection} from './utilities'
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(useLoaderData())
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(()=>{
-    console.log(user)
-  }, [user])
+    if (user && location.pathname === '/'){
+      navigate('/home')}
+    else if (!user && location.pathname !='/'){
+      navigate('/')
+      }
+  }, [user,location.pathname])
 
   return (
     <>

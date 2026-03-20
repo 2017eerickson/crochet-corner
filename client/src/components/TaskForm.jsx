@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
+import { createTask } from '../utilities/crudUtilities';
 
 function TaskForm({addTask}) {
     const [taskTitle, setTaskTitle] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
-        let newTask = {
-            id: crypto.randomUUID(),
-            title: taskTitle
+        let newTask = await createTask(taskTitle)
+        if (newTask){
+            addTask(newTask)
         }
-        addTask(newTask)
         setTaskTitle('')
     }
 

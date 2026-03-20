@@ -2,19 +2,26 @@ import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import { deleteTask, editTask } from '../utilities/crudUtilities';
 
 const TaskDisplay = ({task, rmTask, updateTask}) => {
 
     const [edit, setEdit] = useState(false)
     const [editTitle, setEditTitle] = useState(task.title)
 
-    const editTaskHandle = () => {
-        let editedTask = {
-            id:task.id,
-            title: editTitle
+    const editTaskHandle = async() => {
+        let editedTask = await editTask(task.id,editTitle)
+        if (editedTask){
+            updateTask(editedTask)
         }
-        updateTask(editedTask)
         setEdit(!edit)
+    }
+
+    const handleDelete = async()=>{
+        let deletedTask = await deleteTask(task.id)
+        if (deletedTask){
+            rmTask(task)
+        }
     }
 
     return (
@@ -42,7 +49,7 @@ const TaskDisplay = ({task, rmTask, updateTask}) => {
                 </div>
                 <div className="vr" />
                 <div className="p-2">
-                    <Button variant='danger' onClick={()=>rmTask(task)}>
+                    <Button variant='danger' onClick={handleDelete}>
                         Delete
                     </Button>
                 </div>

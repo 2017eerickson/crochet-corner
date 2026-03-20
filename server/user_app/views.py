@@ -9,13 +9,16 @@ from rest_framework import status as s
 
 # Create your views here.
 class CreateUser(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = []
+    permission_classes = []
 
     def post(self, request):
-        data = request.data
-        data['username'] = request.data.get('email')
-        new_user = AppUser.objects.create_user(**data)
+        user = {
+                "email" : request.data.get('email'),
+                "password" : request.data.get('password'),
+                "username" : request.data.get('email')
+                }
+        new_user = AppUser.objects.create_user(**user)
         try:
             new_user.full_clean()
             new_user.save()
