@@ -40,4 +40,4 @@ class AnItem(APIView):
         item = request.user.items.get(id=item_id)
         return_string = f"{item.title} has been deleted"
         item.delete()
-        return Response(return_string)
+        return Response(return_string)    

@@ -14,6 +14,7 @@ from dotenv import dotenv_values
 env = dotenv_values(".env")
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'item_app',
     'user_app',
+    'checkout_app',
 ]
 
 MIDDLEWARE = [
