@@ -1,0 +1,36 @@
+Crochet Corner :
+  This is an ecommerce app built with a React frontend , a Django backend and a Postgres database all 
+  wrapped up in a docker network utilzling nginx to navigate browser traffic to the frontend and backend
+  respectivley. While also utlizing gunicorn to ensure the backend maintains robustness under heavy request traffic.
+    
+  "Crochet Corner, is an intentional marketplace for 1-of-1 handmade gifts. We’re the antidote to 
+  'fast fashion'—connecting conscious shoppers with small business owners through unique crochet pieces 
+  you won't find anywhere else. Don't just buy a gift; buy the only one in existence."
+
+
+Day 1 ish :
+  I began with getting all my idead out onto virtual paper (tldraw) and then orginazed it with the fulllstack in mind.
+  Creating ui wireframes, feature lists, user stories, model attrabutes and requests wireframes.
+  After prioritizing what features could make it into the mvp that is due in 2.5 weeks I made tasks lists for each feature
+  and began the fun part of tackling them.
+
+Day 3 ish :
+  I started with a fullstack skelton I orcestrated to make set up easier and more consistant and easily interchangbale depending on the project.
+  after getting my docker network and my envirornment up to speed I started to work on the back end. The Item model was created first then the user.
+
+Day 5 ish:
+  Heavy research for the Stripe api was todays goal and after much confusion I begain to understand how I could use stripes embedded checkoutsessions 
+  object and how to write it using django considering their docs example only account for working with flask. After much back and forth trying to also figure 
+  out how to use my own product database when calling the checkoutsession I was off to te races. I ended the day being able to send
+  a sucessful request to create a checkout session and return the client sercret that my front end will utilize to finalize payment with the stripe api.
+
+
+
+
+
+
+
+
+
+
+  
