@@ -36,12 +36,13 @@ function NavBar() {
               Custom Order Form 
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex ">
+          
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
-              aria-label="Search"
+              aria-label="search"
             />
             <Button variant="outline-success">Search</Button>
           </Form>

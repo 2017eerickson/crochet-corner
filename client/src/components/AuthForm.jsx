@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { handleUserAuth } from '../utilities/authUtilities';
+// import { useLoaderData } from 'react-router-dom';
 
-const AuthForm = ({setUser}) => {
-
+const AuthForm = () => {
+    const [user, setUser] = useState({email:"",password:""})
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [create, setCreate] = useState(true)
@@ -20,7 +21,7 @@ const AuthForm = ({setUser}) => {
         // let method = create ? 'CREATE ACCT' : 'LOGIN ACCT'
         let user = await handleUserAuth(userDict,create)
         if (user === null){
-            console.log(`fit user: ${ user}`)
+            console.log('user', user)
             return 
         }
         

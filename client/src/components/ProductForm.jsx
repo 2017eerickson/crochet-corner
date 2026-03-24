@@ -3,16 +3,16 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/esm/Button';
 import { createTask } from '../utilities/crudUtilities';
 
-function TaskForm({addTask}) {
-    const [taskTitle, setTaskTitle] = useState('')
+function ProductForm({addProduct}) {
+    const [productTitle, setProductTitle] = useState('')
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        let newTask = await createTask(taskTitle)
-        if (newTask){
-            addTask(newTask)
+        let newProduct = await createTask(productTitle)
+        if (newProduct){
+            addProduct(newProduct)
         }
-        setTaskTitle('')
+        setProductTitle('')
     }
 
     return (
@@ -20,9 +20,9 @@ function TaskForm({addTask}) {
             <Form onSubmit={handleSubmit} style={{width:"100%", display:"flex", justifyContent:"space-around"}}>
                 <Form.Control
                     type="text"
-                    placeholder='input a new task title here'
-                    value={taskTitle}
-                    onChange={(e)=>setTaskTitle(e.target.value)}
+                    placeholder='input a new product title here'
+                    value={productTitle}
+                    onChange={(e)=>setProductTitle(e.target.value)}
                 />
                 <Button type='submit'>
                     Create
@@ -32,4 +32,4 @@ function TaskForm({addTask}) {
     );
 }
 
-export default TaskForm;
+export default ProductForm;

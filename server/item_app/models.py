@@ -9,8 +9,16 @@ class Item(models.Model):
         blank=False,
         null =False
         )
-    desc= models.CharField(max_length=500)
-    color = models.CharField(max_length=50)
+    desc= models.CharField(
+        max_length=500,
+        blank=False,
+        null =False
+        )
+    color = models.CharField(
+        max_length=50,
+        blank=True,
+        null =True
+        )
     size = models.CharField(
         max_length=50,
         default= 'Med',

@@ -6,12 +6,13 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status as s
+# from serializers import AppUserSerializer
 
 # Create your views here.
 class CreateUser(APIView):
     authentication_classes = []
     permission_classes = []
-
+    
     def post(self, request):
         user = {
                 "email" : request.data.get('email'),
@@ -28,13 +29,18 @@ class CreateUser(APIView):
             return Response(e.args, status=s.HTTP_400_BAD_REQUEST)
 
 class LogIn(APIView):
-    authentication_classes = []
-    permission_classes = []
-
+# {
+#     "token": "f5191ec1f11e194d775a419e57b11af047eab087",
+#     "email": "t@test.com"
+# }
     def post(self, request):
         data = request.data
-        data['username'] = request.data.get('email')
-        user = authenticate(username=data.get('username'), password=data.get("password"))
+        username = request.data.get('email')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        user = authenticate(
+            username=username, 
+            password=password)
         if user:
             Token.objects.get_or_create(user=user)
             return Response({"token":user.auth_token.key, "email":user.email})

@@ -1,25 +1,40 @@
 import { createBrowserRouter } from 'react-router-dom'
+import App from "./App"
 import AuthPage from "./pages/AuthPage"
 import HomePage from "./pages/HomePage"
-import App from "./App"
+import SellerHomepage from "./pages/SellerHomepage"
+import DetailsPage from './pages/DetailsPage'
+import CartPage from './pages/CartPage'
 import { getAllItems } from './utilities/crudUtilities'
 // import { userConfirmation } from './utilities/authUtilities'
-// import { getAllTasks } from './utilities/crudUtilities'
 
 const router = createBrowserRouter([
     {
         path:"/",
-        // loader: userConfirmation,
+        loader: getAllItems,
         element: <App/>,
         children:[
-            // {
-            //     index:true,
-            //     element:<AuthPage/>
-            // },
             {
-                path:"home",
-                loader: getAllItems,
-                element: <HomePage />
+                index:true,
+                element:<HomePage/>
+            },
+            {
+                path:"details",
+                element: <DetailsPage />
+            },
+            {
+                path:"cart",
+                element: <CartPage />
+            },
+            {
+                path:"sellers",
+                // loader: userConfirmation,
+                element: <AuthPage />
+            },
+            {
+                path:"sellerhomepage",
+                // loader: userConfirmation,
+                element: <SellerHomepage />
             }
         ]
     }

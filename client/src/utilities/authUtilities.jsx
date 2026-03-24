@@ -25,7 +25,7 @@ export const logout = async()=>{
 }
 
 export const userConfirmation = async() => {
-    let token = localStorage.getItem("token") // 'str' | null
+    let token = localStorage.getItem("token") 
     if (token){
         api.defaults.headers.common['Authorization'] = `Token ${token}`
         let response = await api.get('users/')
