@@ -24,6 +24,9 @@ Day 5 ish:
   out how to use my own product database when calling the checkoutsession I was off to te races. I ended the day being able to send
   a sucessful request to create a checkout session and return the client sercret that my front end will utilize to finalize payment with the stripe api.
 
+  Day 7ish:
+  backend is pretty much done , endpoints have been tested manually tested with postamn. Now I am writing test files for the app to ensure future testing is accurate and efficent. After testing I'll move to creating all utility functions that call the backend from the react app.
+
 
 
 
