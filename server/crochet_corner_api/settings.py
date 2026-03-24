@@ -10,12 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
-from dotenv import dotenv_values
-env = dotenv_values(".env")
-from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
-STRIPE_SECRET_KEY='sk_test_51TC2FmD53YbrJkK5XuJJpKgHglyFWm6yy7YVgAzK1eK6zLgiBBZw4SjFLusq3YRTbj8wTkLL4ImKUJQTNd3PZJwi004YzomdUP'
-STRIPE_PUBLISHABLE_KEY='pk_test_51TC2FmD53YbrJkK54R7IqgvcQbG7GgXAFyNr755oMAYElk6CipXJkpARmVHwDAvSqXhAj2w8kHmVhAjayYWK3U0a00SKeTAVl3'
 
 STRIPE_SECRET_KEY=os.getenv('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY=os.getenv('STRIPE_PUBLISHABLE_KEY')
