@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
-from dotenv import load_dotenv
-load_dotenv()
+from dotenv import dotenv_values
+env = dotenv_values(".env")
 from pathlib import Path
+
+STRIPE_SECRET_KEY='sk_test_51TC2FmD53YbrJkK5XuJJpKgHglyFWm6yy7YVgAzK1eK6zLgiBBZw4SjFLusq3YRTbj8wTkLL4ImKUJQTNd3PZJwi004YzomdUP'
+STRIPE_PUBLISHABLE_KEY='pk_test_51TC2FmD53YbrJkK54R7IqgvcQbG7GgXAFyNr755oMAYElk6CipXJkpARmVHwDAvSqXhAj2w8kHmVhAjayYWK3U0a00SKeTAVl3'
 
 STRIPE_SECRET_KEY=os.getenv('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY=os.getenv('STRIPE_PUBLISHABLE_KEY')
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -88,9 +90,9 @@ POSTGRES_DB=os.getenv('POSTGRES_DB')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cc_db',
-        'USER': 'cc_user',
-        'PASSWORD': 'password',
+        'NAME': POSTGRES_DB,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
         'HOST': 'cc_db-container',
         'PORT': '5432',
     }
