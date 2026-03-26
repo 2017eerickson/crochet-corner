@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from item_app.models import Item
 from item_app.serializers import ItemSerializer
 from rest_framework import status as s
+from django.shortcuts import redirect
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -12,6 +13,7 @@ class EmbeddedCheckout(APIView):
     def post(self, request ): #This endpoint will be passed a list of cart item ids and will return a client secret for the checkout session
         ListItemsIds = request.data.get('cart_items')
         ListItems = [ItemSerializer(Item.objects.get(id=item_id)).data for item_id in ListItemsIds]#list of dicts with id, name, price for each item in cart
+        base_url = request.data.get('return_url_base')
 
         try:
             checkout_session = stripe.checkout.Session.create(
@@ -31,14 +33,20 @@ class EmbeddedCheckout(APIView):
                 invoice_creation={"enabled": True},
                 ui_mode='embedded', 
                 redirect_on_completion='never',
-            )
-            if checkout_session.status == 'paid':
-                # Handle post-payment logic here (e.g., update order status, send confirmation email, update db )
-                 Item.objects.filter(id__in = ListItemsIds ).delete() # double underscore represents sql filter equivlant 'select * from itme_app_item where id in (1,5,3)'
-                 print("Payment successful, items deleted from database.")
-            elif checkout_session.status == 'unpaid':
-                print("Payment unsucessfull, items still in database.")
+                return_url=f"{base_url}/api/v1/orderstatus?session_id={{CHECKOUT_SESSION_ID}}"            
+                )
             
-            return Response({'clientSecret': checkout_session.client_secret})
+            
+            return Response({'data': checkout_session}, status=s.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=400)
+
+class OrderStatus(APIView):
+    def get(self, request):
+        session_id = request.GET.get('session_id')
+        try:
+            session = stripe.checkout.Session.retrieve(session_id)
+            payment_status = session.payment_status
+            return Response({'payment_status': payment_status}, status=s.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=400)

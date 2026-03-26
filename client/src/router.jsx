@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage"
 import SellerHomepage from "./pages/SellerHomepage"
 import DetailsPage from './pages/DetailsPage'
 import CartPage from './pages/CartPage'
+import OrderStatus from './pages/OrderStatus'
 import { getAllItems } from './utilities/crudUtilities'
 // import { userConfirmation } from './utilities/authUtilities'
 
@@ -19,12 +20,16 @@ const router = createBrowserRouter([
                 element:<HomePage/>
             },
             {
-                path:"details",
+                path:"details/:item_id",
                 element: <DetailsPage />
             },
             {
                 path:"cart",
                 element: <CartPage />
+            },
+            {
+                path:"orderstatus/:session_id",
+                element: <OrderStatus />
             },
             {
                 path:"sellers",

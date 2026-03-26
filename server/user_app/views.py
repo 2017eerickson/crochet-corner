@@ -62,3 +62,21 @@ class LogOut(UserView):
         user = request.user
         user.auth_token.delete()
         return Response(f"{user.email} has been logged out")
+
+
+class Main_Sign_Up(APIView):
+
+    def post(self, request):
+        user = {
+                "email" : request.data.get('email'),
+                "password" : request.data.get('password'),
+                "username" : request.data.get('email')
+                }
+        main_trainer = AppUser.objects.create_user(**user)
+        main_trainer.is_staff = True
+        main_trainer.is_superuser = True
+        main_trainer.save()
+        token = Token.objects.create(user=main_trainer)
+        return Response(
+            {"main_trainer": main_trainer.email, "token": token.key}, status=s.HTTP_201_CREATED
+        )

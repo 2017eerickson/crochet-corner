@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import cart from '../assets/cart.png'
 
 function NavBar() {
   return (
@@ -36,8 +37,10 @@ function NavBar() {
               Custom Order Form 
             </Nav.Link>
           </Nav>
+          <div className="h-px w-px" >
+            <img classname='' src={cart} alt="cart" />
+          </div>
           <Form className="d-flex ">
-          
             <Form.Control
               type="search"
               placeholder="Search"

@@ -41,3 +41,6 @@ class AnItem(APIView):
         return_string = f"{item.name} has been deleted"
         item.delete()
         return Response(return_string)    
+    
+class Media(APIView):
+    pass

@@ -21,17 +21,18 @@ class Item(models.Model):
         )
     size = models.CharField(
         max_length=50,
-        default= 'Med',
+        default= 'M',
         validators= [
             validate_size
             ]
         )
-    photo = models.CharField(
-        max_length=100,
-        blank=False,
-        null =False,
-        default = 'https://www.pngall.com/wp-content/uploads/5/Clothing-Hanger-PNG-High-Quality-Image.png'
-        )
+    photo = models.ImageField(upload_to='images/')
+    # (
+        # max_length=100,
+        # blank=False,
+        # null =False,
+        # default = 'https://www.pngall.com/wp-content/uploads/5/Clothing-Hanger-PNG-High-Quality-Image.png'
+        # )
     price = models.DecimalField(
         max_digits=5, 
         decimal_places=2,
