@@ -5,15 +5,19 @@ import {useLoaderData} from 'react-router-dom'
 import NavBar from './components/NavBar'
 
 function App() {
+  const [user, setUser] = useState(null)
   const [items, setItems] = useState(useLoaderData())
-  const [cartItems, setCartItems] = useState(null)
-
+  const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")) : [])
+  
   const addToCart =(cartItemId)=>{
 
-          let localCartItemIds = JSON.parse(localStorage.getItem("cartItems"))
+    let localCartItemIds = JSON.parse(localStorage.getItem("cartItems"))
 
-          localCartItemIds? localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId])) : localStorage.setItem("cartItems", JSON.stringify([cartItemId]))
-          console.log(localStorage.getItem("cartItems"))
+  // if localCartItemIds.includes(cartItemId)
+  //    pass
+
+    localCartItemIds? localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId])) : localStorage.setItem("cartItems", JSON.stringify([cartItemId]))
+    console.log(localStorage.getItem("cartItems"))
   }
   const rmFromCart =(cartItemId)=>{
 
@@ -22,6 +26,7 @@ function App() {
           localStorage.setItem("cartItems", JSON.stringify([...localCartItems])) 
           console.log(localStorage.getItem("cartItems"))
   }
+  
 
   // const addToCart = (cartItem) => {
     //   cartItems? setCartItems([...cartItems, cartItem]) : setCartItems([cartItem])
@@ -39,14 +44,19 @@ function App() {
 
   return (
     <>
-      <NavBar/>
+      <NavBar 
+        cartItems={cartItems}
+        user={user}
+      />
       <Outlet context={{ 
         items, 
         setItems, 
         cartItems, 
         setCartItems,
         addToCart,
-        rmFromCart
+        rmFromCart,
+        user,
+        setUser
          }}/>
     </>
   )

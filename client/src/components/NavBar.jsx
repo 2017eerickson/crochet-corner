@@ -1,14 +1,21 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
+import { useState } from 'react';
 
-function NavBar() {
+function NavBar({ cartItems, user }) {
   const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(cartItems.length);
+  
+  console.log(user)
+
+  useState(() => {
+    setQuantity(cartItems.length);
+  }, [cartItems]);
+
   return (
     <Navbar expand="lg bg-light" >
       <Container fluid>
@@ -32,34 +39,16 @@ function NavBar() {
               Custom Order Form 
             </Nav.Link>
           </Nav>
-          <button onClick={() => navigate('/cart')}>
+          <button className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
             <img src={cart} width={"30vim"}  />
-          </button>
-          <Form className="d-flex pl-10">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="search"
-            />
-            <NavDropdown title="Filters" id="navbarScrollingDropdown" className='p-3'>
-              <NavDropdown.Item onClick={() => navigate('/new-arrivals')}>
-                New Arrivals
-              </NavDropdown.Item>
-              <NavDropdown.Item  onClick={() => navigate('/hoods')}>
-                Hoods
-              </NavDropdown.Item>
-              <NavDropdown.Item  onClick={() => navigate('/beanies')}>
-                Beanies
-              </NavDropdown.Item>
-              <NavDropdown.Item  onClick={() => navigate('/misc')}>
-                Misc
-              </NavDropdown.Item>
-            
-            </NavDropdown>
-            <Button variant="outline-success">Search</Button>
-            
-          </Form>
+            <p className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
+          </button> 
+          { /* Need to add conditional rendering for login/logout button based on user state */}
+          {user?
+            <Button onClick={() => navigate('/sellers')} variant="outline-primary">Logout</Button>
+            :
+            <Button onClick={() => navigate('/sellers')} variant="outline-primary">Login</Button>
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>

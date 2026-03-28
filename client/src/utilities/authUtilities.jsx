@@ -51,7 +51,9 @@ export const handleUserAuth = async (data, create) => {
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
     return response.data.email;
   }
-  alert(response.data);
+  alert(response.data)
+  console.log(response.data)
+  ;
   return null;
 };
 
