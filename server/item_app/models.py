@@ -39,6 +39,15 @@ class Item(models.Model):
         null=False,
         blank = False
         )
+    sold = models.BooleanField(
+        default=False
+        )
+    category = models.CharField(
+        max_length=50,
+        blank=False,
+        null =False,
+        default='Misc'
+        )
 
 
   

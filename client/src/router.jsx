@@ -3,10 +3,13 @@ import App from "./App"
 import AuthPage from "./pages/AuthPage"
 import HomePage from "./pages/HomePage"
 import SellerHomepage from "./pages/SellerHomepage"
+import SellerDetails from "./pages/SellerDetails"
 import DetailsPage from './pages/DetailsPage'
+import CheckoutPage from './pages/CheckoutPage'
 import CartPage from './pages/CartPage'
 import OrderStatus from './pages/OrderStatus'
 import { getAllItems } from './utilities/crudUtilities'
+import './index.css';
 // import { userConfirmation } from './utilities/authUtilities'
 
 const router = createBrowserRouter([
@@ -20,12 +23,17 @@ const router = createBrowserRouter([
                 element:<HomePage/>
             },
             {
-                path:"details/:item_id",
+                path:"details/:item_id", 
                 element: <DetailsPage />
+
             },
-            {
+             {
                 path:"cart",
                 element: <CartPage />
+            },
+            {
+                path:"checkout",
+                element: <CheckoutPage />
             },
             {
                 path:"orderstatus/:session_id",
@@ -40,7 +48,13 @@ const router = createBrowserRouter([
                 path:"sellerhomepage",
                 // loader: userConfirmation,
                 element: <SellerHomepage />
+            },
+            {
+                path:"sellerhomepage/sellerdetails/:item_id",
+                // loader: userConfirmation,
+                element: <SellerDetails />
             }
+
         ]
     }
 ])

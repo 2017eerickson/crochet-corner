@@ -1,52 +1,37 @@
-// import { useOutletContext } from 'react-router-dom'
-import axios from 'axios'
-import React, { useCallback, useState, useEffect } from "react";
-import {loadStripe} from '@stripe/stripe-js';
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout
-} from '@stripe/react-stripe-js';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate
-} from "react-router-dom";
+import React, { useEffect } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
-const stripePromise = loadStripe("pk_test_51TC2FmD53YbrJkK54R7IqgvcQbG7GgXAFyNr755oMAYElk6CipXJkpARmVHwDAvSqXhAj2w8kHmVhAjayYWK3U0a00SKeTAVl3");
 
 export default function CartPage() {
-    const [clientSecret, setClientSecret] = useState(' ')
-    
-    const fetchClientSecret = async(e) => {
-    e.preventDefault()
-    try {
-        let response = await axios.post("/api/v1/checkout/", {
-          'cart_items': [9,6,5],
-        })
-        if (response.status == 200){
-        console.log(response.data)
-        setClientSecret(response.data.clientSecret)
-        }else{
-        console.error(response.data)
-        }
-    } catch (error) {
-        console.error(error)
-        }
-    }
+    useEffect(()=>{
+        // if cart items change update ui
+    }, [items])
 
-  
+    const { items, rmFromCart } = useOutletContext()
+    // needto grab cart ids from local storage 
+    let cartIds = JSON.parse(localStorage.getItem("cartItems"))
+    // need to get objects using filter on items using cart ids 
+    let cartItems = items.filter((item) => cartIds.includes(item.id))
+    //dynamically display items in cart using map 
+    // need rm cabilities for cart 
+    // need component to display total price of items in cart
+    // need button to checkout that will take us to checkout page
+
   return (
-    <div id="checkout">
-      <EmbeddedCheckoutProvider
-        stripe={stripePromise? stripePromise : null}
-        options={clientSecret ? {clientSecret} : null}
-      >
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-      <button onClick={fetchClientSecret}>Checkout</button>
+    <div id='cartItems' className='m-8 flex flex-col  min-h-screen
+ items-center gap-4'>
+        {
+            cartItems?
+            cartItems.map((item)=>(
+                <div key={item.id} className=' flex flex-row items-center justify-between w-1/2 p-4 bg-orange-50 rounded-xl shadow-md'>
+                    <h3>{item.name}</h3>
+                    <h5>{item.price}</h5>
+                    <button onClick={() => rmFromCart(item.id)}>X</button>
+                </div>
+            ))
+            :
+            null
+        }
     </div>
   )
 }
-
-

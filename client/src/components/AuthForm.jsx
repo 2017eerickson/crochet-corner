@@ -29,12 +29,12 @@ const AuthForm = () => {
         setCreate(true)
         setEmail('')
         setPassword('')
-        navigate('/home/')
+        navigate('/sellerhomepage/')
     }
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className= " flex flex-col jutify-between h-full">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 

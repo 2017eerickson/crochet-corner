@@ -5,8 +5,7 @@ import ItemDisplay from "../components/ItemDisplay";
 const HomePage = () => {
     const { items , addToCart} = useOutletContext()
     return (
-        <div>
-            <h1>Welcome to Crochet Corner Homepage !</h1>
+        <div className='min-h-screen'>
             {
                 items?
                 <ItemDisplay items={items} addToCart={addToCart}/>

@@ -1,0 +1,156 @@
+[
+{
+  "model": "item_app.item",
+  "pk": 1,
+  "fields": {
+    "name": "Cherry Bomb Cat Beanie",
+    "desc": "A vibrant, solid-colored statement piece. High-definition crochet stitches in a bright true red.",
+    "color": "red",
+    "size": "M",
+    "photo": "images/IMG_5935.jpg",
+    "price": "25.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 2,
+  "fields": {
+    "name": "Cherry Bomb Cat Beanie",
+    "desc": "A vibrant, solid-colored statement piece. High-definition crochet stitches in a bright true red.",
+    "color": "red",
+    "size": "M",
+    "photo": "images/IMG_5935_WqkBoN3.jpg",
+    "price": "25.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 3,
+  "fields": {
+    "name": "Terracotta Sunset Cat Beanie",
+    "desc": "Hand-crocheted cat ear hat featuring a warm gradient of burnt orange, dusty rose, and moss green. Includes functional braided chin ties.",
+    "color": "Burnt orange",
+    "size": "M",
+    "photo": "images/IMG_5929.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 4,
+  "fields": {
+    "name": "Terracotta Sunset Cat Beanie",
+    "desc": "Hand-crocheted cat ear hat featuring a warm gradient of burnt orange, dusty rose, and moss green. Includes functional braided chin ties.",
+    "color": "Terracotta/Rose/Green",
+    "size": "M",
+    "photo": "images/IMG_5929_ZvPhjn0.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 5,
+  "fields": {
+    "name": "Terracotta Sunset Cat Beanie",
+    "desc": "Hand-crocheted cat ear hat featuring a warm gradient of burnt orange, dusty rose, and moss green. Includes functional braided chin ties.",
+    "color": "Terracotta/Rose/Green",
+    "size": "M",
+    "photo": "images/IMG_5929_lKFn36f.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 6,
+  "fields": {
+    "name": "Ocean Mist Cat Beanie",
+    "desc": "A cool-toned beanie with structured cat ears. The yarn transitions through slate blue, sage green, and sandy gold.",
+    "color": "Blue/Sage/Gold",
+    "size": "M",
+    "photo": "images/IMG_5932.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 7,
+  "fields": {
+    "name": "Ocean Mist Cat Beanie",
+    "desc": "A cool-toned beanie with structured cat ears. The yarn transitions through slate blue, sage green, and sandy gold.",
+    "color": "Blue/Sage/Gold",
+    "size": "M",
+    "photo": "images/IMG_5932_Ouapv4C.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 8,
+  "fields": {
+    "name": "Midnight Ember Cat Beanie",
+    "desc": "Dark and cozy. This beanie features deep chocolate browns mixed with charcoal and hints of brick red.",
+    "color": "Dark Brown/Charcoal",
+    "size": "M",
+    "photo": "images/IMG_5933.jpg",
+    "price": "25.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 9,
+  "fields": {
+    "name": "Midnight Ember Cat Beanie",
+    "desc": "Dark and cozy. This beanie features deep chocolate browns mixed with charcoal and hints of brick red.",
+    "color": "Dark Brown/Charcoal",
+    "size": "M",
+    "photo": "images/IMG_5933_hbzS6XT.jpg",
+    "price": "25.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 10,
+  "fields": {
+    "name": "Enchanted Forest Cat Beanie",
+    "desc": "Earthy and whimsical. A complex blend of forest green, deep purple, and heather grey.",
+    "color": "Forest/Purple/Grey",
+    "size": "M",
+    "photo": "images/IMG_5937.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+},
+{
+  "model": "item_app.item",
+  "pk": 11,
+  "fields": {
+    "name": "Enchanted Forest Cat Beanie",
+    "desc": "Earthy and whimsical. A complex blend of forest green, deep purple, and heather grey.",
+    "color": "Forest/Purple/Grey",
+    "size": "M",
+    "photo": "images/IMG_5937_uKYLWJd.jpg",
+    "price": "30.00",
+    "sold": false,
+    "category": "Cat"
+  }
+}
+]

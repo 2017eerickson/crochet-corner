@@ -6,13 +6,13 @@ const AuthPage = () => {
     const {setUser} = useOutletContext()
 
     return (
-        <>
-        <Card style={{ width: '18rem' }} className="mx-auto mt-5 p-3">
+        <div className='min-h-screen'>
+        <Card style={{ width: '50vmin', height: '50vmin' }} className="mx-auto mt-5 p-3  border-2 rounded-2xl shadow-xl ">
             <h1>Seller Login and signup </h1>
             <AuthForm setUser={setUser} />
         </Card>
            
-        </>
+        </div>
     )
 }
 
