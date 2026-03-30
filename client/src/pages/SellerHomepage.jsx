@@ -5,8 +5,10 @@
   import Card from 'react-bootstrap/Card';
  
  export default function SellerHomepage() {
-   const { items } = useOutletContext()
+   const { items,user, setuser } = useOutletContext()
    const navigate = useNavigate()
+
+   
    return (
      <div className='min-h-screen'>
      

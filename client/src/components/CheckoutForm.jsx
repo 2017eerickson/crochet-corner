@@ -7,12 +7,9 @@ import {
 // import { fetchClientSecret } from '../utilities/stripeUtilities';
 import axios from 'axios';
 
-
 const stripePromise = loadStripe("pk_test_51TC2FmD53YbrJkK54R7IqgvcQbG7GgXAFyNr755oMAYElk6CipXJkpARmVHwDAvSqXhAj2w8kHmVhAjayYWK3U0a00SKeTAVl3");
 
-
 function CheckoutForm() {
-  // const [clientSecret, setClientSecret] = useState('');
   let cartItems = JSON.parse(localStorage.getItem("cartItems"))
 
   const fetchClientSecret = useCallback(async() => {
@@ -26,7 +23,6 @@ function CheckoutForm() {
     } 
   }, []);
   const options = {fetchClientSecret};
-
 
   return (
     <div className='min-h-screen min-w-50vmin'>

@@ -4,18 +4,29 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
-import { useState } from 'react';
+import { useState , useCallback} from 'react';
+import { userConfirmation } from '../utilities/authUtilities';
 
-function NavBar({ cartItems, user }) {
+function NavBar({ cartItems, user, setuser }) {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(cartItems.length);
-  
-  console.log(user)
 
   useState(() => {
     setQuantity(cartItems.length);
   }, [cartItems]);
-
+  
+  const verifyUser = useCallback(async() => {
+    let verifiedUser = await userConfirmation()
+    if(verifiedUser){
+      setuser(verifiedUser)
+    }else{
+      setuser(null)
+    }
+  }, [])
+  
+  verifyUser()
+  console.log(user)
+  
   return (
     <Navbar expand="lg bg-light" >
       <Container fluid>

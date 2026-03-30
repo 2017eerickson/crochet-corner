@@ -31,7 +31,7 @@ const AuthForm = () => {
         setPassword('')
         navigate('/sellerhomepage/')
     }
-
+    console.log('user', user)
     return (
         <>
             <Form onSubmit={handleSubmit} className= " flex flex-col jutify-between h-full">
