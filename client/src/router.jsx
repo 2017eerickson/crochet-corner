@@ -10,6 +10,7 @@ import CartPage from './pages/CartPage'
 import CreateProduct from './pages/CreateProduct'
 import OrderStatus from './pages/OrderStatus'
 import { getAllItems } from './utilities/crudUtilities'
+import { userConfirmation } from './utilities/authUtilities'
 import './index.css';
 // import { userConfirmation } from './utilities/authUtilities'
 
@@ -42,17 +43,15 @@ const router = createBrowserRouter([
             },
             {
                 path:"sellers",
-                // loader: userConfirmation,
                 element: <AuthPage />
             },
             {
                 path:"sellerhomepage",
-                // loader: userConfirmation,
+                loader: userConfirmation,
                 element: <SellerHomepage />
             },
             {
                 path:"sellerhomepage/sellerdetails/:item_id",
-                // loader: userConfirmation,
                 element: <SellerDetails />
             },
             {

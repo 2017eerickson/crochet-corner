@@ -8,7 +8,7 @@ const ItemDisplay = ({items,addToCart}) => {
     
     const navigate = useNavigate()
     return (
-        <div className='p-5 flex flex-row flex-wrap gap-4 justify-center mt-4rounded-xl'>
+        <div className='p-5 flex flex-row flex-wrap gap-4 justify-left mt-4rounded-xl'>
         {
             items.length > 1 ?
             items.map((item)=>( 
