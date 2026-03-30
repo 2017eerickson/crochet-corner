@@ -11,6 +11,7 @@
      <div className='min-h-screen'>
      
      <h1 className='text-3xl'>Welcome to your seller homepage</h1>
+     <Button onClick={()=> navigate('createproduct/')} variant="success" className='my-4'>Create New Product</Button>
      {/* search bar  */}
      <div className='p-5 flex flex-row flex-wrap gap-4 justify-center mt-4rounded-xl'>
         {

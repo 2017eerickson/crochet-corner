@@ -26,7 +26,11 @@ class Item(models.Model):
             validate_size
             ]
         )
-    photo = models.ImageField(upload_to='images/')
+    photo = models.ImageField(
+        upload_to='images/' ,
+        null=True,
+        blank=True
+        )
     # (
         # max_length=100,
         # blank=False,

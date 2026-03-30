@@ -15,7 +15,6 @@ class AllItems(APIView):
 
     def post(self, request):
         data = request.data.copy()
-        data['user'] = request.user.id
         ser_item = ItemSerializer(data=data)
         if ser_item.is_valid():
             ser_item.save()

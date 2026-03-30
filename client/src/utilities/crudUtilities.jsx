@@ -11,22 +11,23 @@ export const deleteItem = async(id)=>{
         return response.data
 }
 
-export const editItem = async(id, title) =>{
-    let response = await api.put(`/items/${id}/`,{
-        'title': title
-    })
+export const editItem = async(id, updatedItem) =>{
+    let response = await api.put(`/items/${id}/`,  {...updatedItem})
     if(response.status === 200){
+        console.log(JSON.stringify(updatedItem))
         return response.data
     }else{
         return response.errors
     }
 }
 
-export const createItem = async(title)=>{
+export const createItem = async(newItem)=>{
+    console.log(newItem)
     let response = await api.post('/items/',
-        {"title": title}
+        {...newItem}
     )
     if(response.status == 201){
+        console.log(response.data)
         return response.data
     }else{
         console.error(response.data)
