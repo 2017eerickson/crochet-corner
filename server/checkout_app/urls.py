@@ -3,6 +3,6 @@ from .views import *
 
 urlpatterns = [
     path("", EmbeddedCheckout.as_view()),
-    # path('orderstatus/', OrderStatus.as_view(), name='order_status')
+    path('<session_id>/', SessionStatus.as_view())
     
 ]

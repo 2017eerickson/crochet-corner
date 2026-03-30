@@ -11,8 +11,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class EmbeddedCheckout(APIView):
     def post(self, request ): #This endpoint will be passed a list of cart item ids and will return a client secret for the checkout session
-        ListItemsIds = request.data.get('cart_items')
-        ListItems = [ItemSerializer(Item.objects.get(id=item_id)).data for item_id in ListItemsIds]#list of dicts with id, name, price for each item in cart
+        itemsIds = request.data.get('cart_items')
+        items = Item.objects.filter(id__in=itemsIds)
+        itemObj = [ItemSerializer(item).data for item in items]#list of dicts with id, name, price for each item in cart
         base_url = request.data.get('return_url_base')
 
         try:
@@ -28,22 +29,19 @@ class EmbeddedCheckout(APIView):
                             'unit_amount': int(float(item['price']) * 100), # Stripe expects amount in cents
                         },
                         'quantity': 1,
-                    }, ListItems)),
+                    }, itemObj)),
                 mode='payment',
                 invoice_creation={"enabled": True},
-                ui_mode='embedded', 
-                redirect_on_completion='never',
-                return_url=f"{base_url}/api/v1/orderstatus?session_id={{CHECKOUT_SESSION_ID}}"            
+                ui_mode='embedded_page', 
+                return_url=f"http://localhost:80/orderstatus/{{CHECKOUT_SESSION_ID}}/"            
                 )
             
             
-            return Response({'data': checkout_session}, status=s.HTTP_200_OK)
+            return Response({'clientSecret': checkout_session.client_secret}, status=s.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=400)
-
-class OrderStatus(APIView):
-    def get(self, request):
-        session_id = request.GET.get('session_id')
+class SessionStatus(APIView):    
+    def get(self, request, session_id):
         try:
             session = stripe.checkout.Session.retrieve(session_id)
             payment_status = session.payment_status

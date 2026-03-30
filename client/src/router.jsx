@@ -5,8 +5,9 @@ import HomePage from "./pages/HomePage"
 import SellerHomepage from "./pages/SellerHomepage"
 import SellerDetails from "./pages/SellerDetails"
 import DetailsPage from './pages/DetailsPage'
-import CheckoutPage from './pages/CheckoutPage'
+import CheckoutForm from './components/CheckoutForm'
 import CartPage from './pages/CartPage'
+import CreateProduct from './pages/CreateProduct'
 import OrderStatus from './pages/OrderStatus'
 import { getAllItems } from './utilities/crudUtilities'
 import './index.css';
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path:"checkout",
-                element: <CheckoutPage />
+                element: <CheckoutForm />
             },
             {
                 path:"orderstatus/:session_id",
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
                 path:"sellerhomepage/sellerdetails/:item_id",
                 // loader: userConfirmation,
                 element: <SellerDetails />
-            }
+            },
+            {
+                path:"sellerhomepage/createproduct",
+                element: <CreateProduct/>
+            },
 
         ]
     }
