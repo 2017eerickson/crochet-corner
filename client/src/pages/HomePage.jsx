@@ -5,7 +5,7 @@ import ItemDisplay from "../components/ItemDisplay";
 const HomePage = () => {
     const { items , addToCart} = useOutletContext()
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen items-center flex flex-col'>
             {
                 items?
                 <ItemDisplay items={items} addToCart={addToCart}/>

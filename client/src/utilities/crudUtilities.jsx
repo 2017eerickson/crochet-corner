@@ -47,7 +47,7 @@ export const getAllItems = async() => {
     }
 }
 
-export const GetAnItem = async(id) => {
+export const getAnItem = async(id) => {
     let response = await api.get(`items/${id}/`)
     if (response.status == 200){
         return response.data

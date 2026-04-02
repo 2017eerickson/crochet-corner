@@ -14,24 +14,25 @@ export default function CartPage() {
 
 
   return (
-    <div id='cartItems' className='m-8 flex flex-col  min-h-screen items-center gap-4'>
+    <div id='cartItems' className='mx-auto mt-5 w-[75vmin] h-[75vmin] border-2 border-orange-50  flex flex-col justify-center min-h-screen items-center gap-4 '>
         {
             cartobjList ?
                 cartobjList.map((item)=>(
                 
-                <div key={item.id} className=' flex flex-row items-center justify-between w-1/2 p-4 bg-orange-50 rounded-xl shadow-md'>
+                <div key={item.id} className=' border-3 border-pink-700 flex flex-row items-center justify-between gap-2 w-5/6 p-4 h-5/6 bg-transparent text-amber-50 rounded-xl shadow-md '>
+                    <img src={`http://localhost/${item.photo}`} className='w-[20vmin] rounded-full'/>
                     <h3>{item.name}</h3>
-                    <h5>{item.price}</h5>
-                    <button onClick={() => rmFromCart(item.id)}>X</button>
+                    <h5>${item.price}</h5>
+                    <h2><button onClick={() => rmFromCart(item.id)}>X</button></h2>
                 </div>    
                 ))
                 :
                 <h1 className='text-2xl'>Your cart is empty</h1>
 
             }
-            <div>
-                <h2 className='text-xl'>Cart Subtotal: ${total}</h2>
-                <button  onClick={() => navigate('/checkout')} className='bg-green-500 text-white px-4 py-2 border-2 rounded-lg mt-4'>Checkout</button>
+            <div className=' border-3 border-pink-700 m-8 flex flex-col  items-center gap-4 bg-amber-50 p-4 rounded-xl shadow-md'>
+                <h2 className='text-xl'>Cart Subtotal: ${total}.00</h2>
+                <button  className='bg-green-500 text-white p-3  border-3 border-pink-700 rounded-l-full mt-2' onClick={() => navigate('/checkout')}>Checkout</button>
             </div>
     </div>
   )

@@ -1,21 +1,23 @@
- import React from 'react'
- import { useOutletContext } from 'react-router-dom'
- import { useNavigate } from 'react-router-dom'
- import Button from 'react-bootstrap/Button';
-  import Card from 'react-bootstrap/Card';
+import React from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { deleteItem } from '../utilities/crudUtilities';
  
  export default function SellerHomepage() {
-   const { items,user, setuser } = useOutletContext()
+   const { items } = useOutletContext()
    const navigate = useNavigate()
 
    
    return (
-     <div className='min-h-screen'>
+     <div className='min-h-screen flex flex-col justify-center my-4 items-center'>
      
      <h1 className='text-3xl'>Welcome to your seller homepage</h1>
      <Button onClick={()=> navigate('createproduct/')} variant="success" className='my-4'>Create New Product</Button>
      {/* search bar  */}
-     <div className='p-5 flex flex-row flex-wrap gap-4 justify-center mt-4rounded-xl'>
+     <div className='flex flex-row justify-center my-4'>
+        <div className=' m-10 flex flex-row justify-center gap-[1vmin] flex-wrap w-[75%] border-2 border-orange-300 p-[5vmin] rounded-xl bg-transparent shadow-xl'>
         {
             items.length > 1 ?
             items.map((item)=>( 
@@ -26,6 +28,7 @@
                         <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle>
                         <div className='flex flex-row justify-between'>
                             <Button onClick={()=> navigate(`sellerdetails/${item.id}/`)} variant="primary">View Details</Button>
+                            <Button onClick={()=> deleteItem(item.id)} variant="danger">Delete</Button>
                         </div>
                     </Card.Body>
                 </Card>
@@ -35,11 +38,8 @@
             null
             
             }
+            </div>
         </div>
-     {/* big create new product button  */}
-     {/* display all items  */}
-     {/* detail page with edit or celete capibilities */}
-     
      </div>
    )
  }

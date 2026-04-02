@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
 import { useState , useCallback} from 'react';
-import { userConfirmation } from '../utilities/authUtilities';
+import { logout, userConfirmation } from '../utilities/authUtilities';
 
 function NavBar({ cartItems, user, setuser }) {
   const navigate = useNavigate();
@@ -28,42 +28,65 @@ function NavBar({ cartItems, user, setuser }) {
   console.log(user)
   
   return (
-    <Navbar expand="lg bg-light" >
-      <Container fluid>
-        <Navbar.Brand href="#" onClick={() => navigate('/')}>
-          Crochet Corner
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link onClick={() => navigate('/')}>
-              Home
-            </Nav.Link>
-            <Nav.Link  onClick={() => navigate('/gallery')}>
-              Gallery
-            </Nav.Link>
-            <Nav.Link href="#" disabled>
-              Custom Order Form 
-            </Nav.Link>
-          </Nav>
-          <button className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
-            <img src={cart} width={"30vim"}  />
-            <p className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
-          </button> 
-          { /* Need to add conditional rendering for login/logout button based on user state */}
-          {user?
-            <Button onClick={() => navigate('/sellers')} variant="outline-primary">Logout</Button>
-            :
+    user == null?
+      <Navbar  sticky="top" expand="lg" className=' p-15 bg-light border border-gray-300 rounded w-full' >
+        <Container fluid>
+          <Navbar.Brand href="#" onClick={() => navigate('/')}>
+            Crochet Corner
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <Nav.Link onClick={() => navigate('/')}>
+                Home
+              </Nav.Link>
+              <Nav.Link  onClick={() => navigate('/')}>
+                Gallery
+              </Nav.Link>
+              <Nav.Link onClick={() => navigate('/customorder')}>
+                Custom Order Form 
+              </Nav.Link>
+            </Nav>
+            <button className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
+              <img src={cart} width={"30vmin"}   />
+              <p className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
+            </button> 
             <Button onClick={() => navigate('/sellers')} variant="outline-primary">Login</Button>
-          }
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      :
+      <Navbar expand="lg p-10 bg-light border border-gray-300 rounded w-full" >
+        <Container fluid>
+          <Navbar.Brand href="#" onClick={() => navigate('/')}>
+            Crochet Corner
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <Nav.Link onClick={() => navigate('/sellershomepage')}>
+                Home
+              </Nav.Link>
+              <Nav.Link  onClick={() => navigate('/sellerhomepage')}>
+                Gallery
+              </Nav.Link>
+              <Nav.Link onClick={() => navigate('/customorder')} disabled>
+                Custom order requests 
+              </Nav.Link>
+            </Nav>
+            <Button onClick={() => logout()} variant="outline-primary">Logout</Button>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+  )
 }
 
 export default NavBar;
