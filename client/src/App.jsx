@@ -5,7 +5,7 @@ import {useLoaderData} from 'react-router-dom'
 import NavBar from './components/NavBar'
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(useLoderdata())
   const [items, setItems] = useState(useLoaderData())
   const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")) : [])
   
@@ -24,10 +24,12 @@ function App() {
 
   return (
     <>
+    <div className='w-[65%] flex justify-center mx-auto mt-[2vmin]'>
       <NavBar 
         cartItems={cartItems}
         user={user}
       />
+    </div>
       <Outlet context={{ 
         items, 
         setItems, 

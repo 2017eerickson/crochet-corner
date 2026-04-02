@@ -25,13 +25,15 @@ function CheckoutForm() {
   const options = {fetchClientSecret};
 
   return (
-    <div className='min-h-screen min-w-50vmin'>
+    <div className=' min-h-screen w-2/3 h-2/3 flex flex-row  justify-center mx-auto mt-8'>
       {options != null? 
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options={options}
         >
+        <div className=' w-full h-full p-2  border-3 border-pink-950 rounded-xl shadow-xl  bg-amber-50'>
           <EmbeddedCheckout />
+        </div>
         </EmbeddedCheckoutProvider>
        : 
         <p>Loading...</p>

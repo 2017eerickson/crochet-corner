@@ -9,6 +9,7 @@ import CheckoutForm from './components/CheckoutForm'
 import CartPage from './pages/CartPage'
 import CreateProduct from './pages/CreateProduct'
 import OrderStatus from './pages/OrderStatus'
+import CustomOrderPage from './pages/CustomOrderPage'
 import { getAllItems } from './utilities/crudUtilities'
 import { userConfirmation } from './utilities/authUtilities'
 import './index.css';
@@ -17,11 +18,12 @@ import './index.css';
 const router = createBrowserRouter([
     {
         path:"/",
-        loader: getAllItems,
-        element: <App/>,
+        loader: userConfirmation,
+        element: <App />,
         children:[
             {
                 index:true,
+                loader: getAllItems
                 element:<HomePage/>
             },
             {
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path:"sellers",
                 element: <AuthPage />
+            },
+            {
+                path:"customorder",
+                element: <CustomOrderPage />
             },
             {
                 path:"sellerhomepage",

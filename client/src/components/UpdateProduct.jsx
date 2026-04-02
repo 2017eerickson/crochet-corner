@@ -24,7 +24,7 @@ export default function UpdateProduct({item, setEditItem}) {
     <div className='  min-h-screen mx-auto'>
     
             <Card   className='shadow-xl p-10vmin w-xl mx-auto bg-orange-50 mt-10'>
-              <Card.Img variant="top" src={`http://localhost/${item.photo}`}/>
+              <Card.Img className= "p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
             <div className='mt-5'>
                  <Form.Group controlId="formFile" className="mb-3">
                   <h5>Update Image file:</h5>
