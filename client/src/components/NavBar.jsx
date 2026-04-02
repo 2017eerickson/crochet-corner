@@ -4,10 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
-import { useState , useCallback} from 'react';
-import { logout, userConfirmation } from '../utilities/authUtilities';
+import { useState } from 'react';
+import { logout } from '../utilities/authUtilities';
 
-function NavBar({ cartItems, user, setuser }) {
+function NavBar({ cartItems, user, setUser }) {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(cartItems.length);
 
@@ -15,21 +15,22 @@ function NavBar({ cartItems, user, setuser }) {
     setQuantity(cartItems.length);
   }, [cartItems]);
   
-  const verifyUser = useCallback(async() => {
-    let verifiedUser = await userConfirmation()
-    if(verifiedUser){
-      setuser(verifiedUser)
-    }else{
-      setuser(null)
+  const handleLogout = async() => {
+    const response = await logout()
+    if (response){
+      console.log('logged out successfully')
+      setUser(null)
+      navigate('/')
     }
-  }, [])
-  
-  verifyUser()
-  console.log(user)
-  
+    else{
+      console.error('logout failed')
+    }
+    
+  }
+
   return (
     user == null?
-      <Navbar  sticky="top" expand="lg" className=' p-15 bg-light border border-gray-300 rounded w-full' >
+      <Navbar  sticky="top" expand="lg" className='  shadow-lg border-3 bg-light  border-gray-300 rounded w-full' >
         <Container fluid>
           <Navbar.Brand href="#" onClick={() => navigate('/')}>
             Crochet Corner
@@ -62,7 +63,7 @@ function NavBar({ cartItems, user, setuser }) {
       :
       <Navbar expand="lg p-10 bg-light border border-gray-300 rounded w-full" >
         <Container fluid>
-          <Navbar.Brand href="#" onClick={() => navigate('/')}>
+          <Navbar.Brand href="#" onClick={() => navigate('/sellerhomepage')}>
             Crochet Corner
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -72,7 +73,7 @@ function NavBar({ cartItems, user, setuser }) {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link onClick={() => navigate('/sellershomepage')}>
+              <Nav.Link onClick={() => navigate('/sellerhomepage')}>
                 Home
               </Nav.Link>
               <Nav.Link  onClick={() => navigate('/sellerhomepage')}>
@@ -82,7 +83,7 @@ function NavBar({ cartItems, user, setuser }) {
                 Custom order requests 
               </Nav.Link>
             </Nav>
-            <Button onClick={() => logout()} variant="outline-primary">Logout</Button>
+            <Button onClick={() => handleLogout()} variant="outline-primary">Logout</Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
