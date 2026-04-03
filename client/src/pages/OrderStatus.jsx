@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { fetchSessionDetails } from '../utilities/stripeUtilities';
+
 
 export default function OrderStatus() {
   const { session_id } = useParams()
@@ -12,21 +13,16 @@ export default function OrderStatus() {
 // http://localhost/orderstatus/cs_test_b1pE99sPwIeubBzYCM4uLinWCNMkjoOjQuMofwH1usXrHzioFSQeAWFGNG/
   
   useEffect(()=>{
-    const fetchSessionStatus = async ()=>{
+    const handleSessionDetails = async ()=>{
       let response = null
       console.log(response)
-      response = await axios.get(`http://localhost:8000/api/v1/checkout/${session_id}/`,{
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
+      response = await fetchSessionDetails(session_id)
       console.log('response', response)
-      setStatus(response.data.payment_status)
-      setCustomerEmail(response.data.customer_email)
-      console.log('hi', response)
+      setStatus(response.payment_status)
+      setCustomerEmail(response.customer_email)
 
     }
-    fetchSessionStatus()
+    handleSessionDetails()
     
   },[session_id])
 
@@ -35,11 +31,14 @@ export default function OrderStatus() {
     <>
       {
         status == 'paid' ? 
-          <p>
-            We appreciate your business! A confirmation email will be sent to your email!.
+        <div className='min-h-screen flex flex-col items-center justify-center text-white gap-5' id="success">
 
-            If you have any questions, please email <a href="mailto:orders@example.com">orders@example.com</a>.
-          </p>
+          <div className='border-2 h-[55%] w-[70%] p-10 border-green-500 rounded-xl shadow-lg text-center flex flex-col items-center justify-center gap-5'>
+            <p>We appreciate your business! A confirmation email will be sent to  {customerEmail}.</p>
+
+            <p>If you have any questions, please email <a href="mailto:orders@example.com">orders@example.com</a>.</p>
+          </div>
+        </div>
         :
         status == 'failed' ?
           navigate('/checkout')
