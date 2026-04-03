@@ -4,32 +4,31 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { logout } from '../utilities/authUtilities';
 
-function NavBar({ cartItems, user, setUser }) {
+function NavBar({ user, setUser, quantity }) {
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(cartItems.length);
-
-  useState(() => {
-    setQuantity(cartItems.length);
-  }, [cartItems]);
   
+useEffect(() => {
+  if (user === null && window.location.pathname === '/sellerhomepage'){
+    navigate('/')
+  }
+}, [user])
+
   const handleLogout = async() => {
     const response = await logout()
     if (response){
       console.log('logged out successfully')
       setUser(null)
       navigate('/')
-    }
-    else{
-      console.error('logout failed')
-    }
-    
+    } 
   }
 
   return (
-    user == null?
+    <>
+    {
+    user === null?
       <Navbar  sticky="top" expand="lg" className='  shadow-lg border-3 bg-light  border-gray-300 rounded w-full' >
         <Container fluid>
           <Navbar.Brand href="#" onClick={() => navigate('/')}>
@@ -87,7 +86,10 @@ function NavBar({ cartItems, user, setUser }) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      }
+      </>
   )
+
 }
 
 export default NavBar;

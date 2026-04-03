@@ -2,10 +2,13 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { fetchSessionDetails } from '../utilities/stripeUtilities';
+import { editItem } from '../utilities/crudUtilities';
+import { useOutletContext } from 'react-router-dom';
 
 
 export default function OrderStatus() {
   const { session_id } = useParams()
+  const{ setCartItems, setQuantity } = useOutletContext()
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState(null);
   const navigate = useNavigate()
@@ -26,6 +29,20 @@ export default function OrderStatus() {
     
   },[session_id])
 
+  const handleUpdatedItem = async () => { 
+      let cartIds = JSON.parse(localStorage.getItem("cartItems"))
+      for (let id of cartIds){
+        let item = await editItem(id, {sold: true})
+        console.log(item)
+      
+    localStorage.removeItem("cartItems")
+    }
+  }
+  if (status === 'paid'){
+    handleUpdatedItem()
+    setCartItems([])
+    setQuantity(0)
+  }
 
   return (
     <>

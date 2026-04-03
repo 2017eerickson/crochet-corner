@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { editItem } from '../utilities/crudUtilities';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { getAllItems } from '../utilities/crudUtilities';
 
 
-export default function UpdateProduct({item, setEditItem}) {
+export default function UpdateProduct({item, setItems, setEditItem}) {
     const [updatedItem, setUpdatedItem] = useState({})
 
     const handleSave =async () => {
@@ -15,6 +16,8 @@ export default function UpdateProduct({item, setEditItem}) {
         let response = await editItem(item.id, updatedItem)
         if (response) {
             console.log(response)
+            let items = await getAllItems()
+            setItems(items)
         }else{
             console.error("Failed to update item")
         }
@@ -92,6 +95,7 @@ export default function UpdateProduct({item, setEditItem}) {
                     <InputGroup.Checkbox 
                     aria-label="Checkbox for following text input" 
                     value={updatedItem.sold}
+                    defaultChecked={item.sold}
                     onChange={(e) => setUpdatedItem({...updatedItem, sold: e.target.checked})}
                     />
                 </InputGroup>

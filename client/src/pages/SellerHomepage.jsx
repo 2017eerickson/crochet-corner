@@ -4,19 +4,18 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { deleteItem } from '../utilities/crudUtilities';
 import { useLoaderData } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
  
  export default function SellerHomepage() {
-    const { items, } = useOutletContext()
-    const [user, ] = useState(useLoaderData())
+    const { items, user , setUser} = useOutletContext()
     const navigate = useNavigate()
     const location = useLocation()
 
-    console.log(user)
+    setUser(useLoaderData())
     
     useEffect(()=>{
-        if (!user && location.pathname === '/selllerhomepage'){
+        if (!user && location.pathname === '/sellerhomepage'){
           navigate('/')}
        else(
         navigate('/sellerhomepage')
@@ -37,7 +36,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
                     <Card.Img className=" p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
                         <Card.Body className='flex flex-col justify-between'>
                             <Card.Title>{item.name}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle>
+                            { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }
                             <div className='flex flex-row justify-between'>
                                 <button  className="bg-blue-200 shadow-lg border-2 border-blue-400 text-black p-2 rounded-xl" onClick={()=> navigate(`sellerdetails/${item.id}/`)} >View Details</button>
                                 <button className="bg-red-800 border-2 border-red-500 text-white p-2 rounded-xl"     onClick={()=> deleteItem(item.id)} >Delete</button>

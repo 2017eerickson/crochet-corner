@@ -17,15 +17,6 @@ class EmbeddedCheckout(APIView):
         items = Item.objects.filter(id__in=itemsIds)
         itemObj = [ItemSerializer(item).data for item in items]#list of dicts with id, name, price for each item in cart
         base_url = request.data.get('return_url_base')
-        print("""
-              
-              
-                EMBEDDED CHECKOUT TRIGGERED
-                
-                
-                
-              
-              """)
         try:
             checkout_session = stripe.checkout.Session.create(
                 billing_address_collection="required",

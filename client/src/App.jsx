@@ -11,16 +11,26 @@ function App() {
   const [user, setUser] = useState(null)
   const [items, setItems] = useState(useLoaderData())
   const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")) : [])
+  const [quantity, setQuantity] = useState(null);
+
   const navigate = useNavigate()
   const location = useLocation()
 
-  useEffect(()=>{
-    const fetchUser = async() => {
-      let user = await userConfirmation()
+  useEffect(() => {
+    setQuantity(cartItems.length);
+  }, [cartItems]);
+
+  useState(() => {
+   const verifyUser = async() => {
+    let user = await userConfirmation()
+    if (user){  
       setUser(user)
+    }else{
+      setUser(null)
     }
-    fetchUser()
-  }, [])
+   }
+   verifyUser()
+  }, [user]);
 
   useEffect(()=>{
     if (user && location.pathname === '/'){
@@ -30,18 +40,23 @@ function App() {
 
   const addToCart =(cartItemId)=>{
     let localCartItemIds = JSON.parse(localStorage.getItem("cartItems"))
-    if(!localCartItemIds.includes(cartItemId)){
-      localCartItemIds? localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId])) : localStorage.setItem("cartItems", JSON.stringify([cartItemId]))
+
+    if (!localCartItemIds){
+      localStorage.setItem("cartItems", JSON.stringify([cartItemId]))
+    }
+    else if( localCartItemIds != null && !localCartItemIds.includes(cartItemId)){
+      localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId]))
     }
     else{
       alert("item already in cart ")
     }
   }
-  
+
   const rmFromCart =(cartItemId)=>{
     let localCartItems = JSON.parse(localStorage.getItem("cartItems"))
     localCartItems = localCartItems.filter((itemId)=> itemId !== cartItemId)
     localStorage.setItem("cartItems", JSON.stringify([...localCartItems])) 
+    setCartItems(localCartItems)
   }
 
   return (
@@ -50,6 +65,9 @@ function App() {
       <NavBar 
         cartItems={cartItems}
         user={user}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        setUser={setUser}
       />
     </div>
       <Outlet context={{ 

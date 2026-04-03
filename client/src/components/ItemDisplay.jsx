@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 
-const ItemDisplay = ({items,addToCart,item}) => {  
+const ItemDisplay = ({items, addToCart ,item}) => {  
 
     const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ const ItemDisplay = ({items,addToCart,item}) => {
                 <Card.Img className="p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
                 <Card.Body classsName=''>
                         <Card.Title>{item.name}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle>
+                        { !item.sold? <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle> : <Card.Subtitle className="mb-2 text-muted">Sold</Card.Subtitle> }
                         <Card.Subtitle className="mb-2 text-muted">Description:{item.desc}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">Color: {item.color}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">Size: {item.size}</Card.Subtitle>
@@ -28,7 +28,7 @@ const ItemDisplay = ({items,addToCart,item}) => {
                     <Card.Img className="p-4 rounded-full w-[40vmin] h-[40vmin] object-cover " variant="top" src={`http://localhost/${item.photo}`}/>
                     <Card.Body className='flex flex-col justify-between '>
                         <Card.Title>{item.name}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle>
+                        { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }
                         <div className='flex flex-row justify-between'>
                             <Button onClick={()=> navigate(`details/${item.id}/`)} variant="primary">View Details</Button>
                             <Button onClick={()=> addToCart(item.id)} variant="success">Add to Cart</Button>
