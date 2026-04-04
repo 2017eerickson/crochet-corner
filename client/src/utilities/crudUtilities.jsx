@@ -17,7 +17,8 @@ export const editItem = async(id, updatedItem) =>{
         console.log(JSON.stringify(updatedItem))
         return response.data
     }else{
-        return response.errors
+        console.error(response.data)
+        return null
     }
 }
 

@@ -9,7 +9,7 @@ import { logout } from '../utilities/authUtilities';
 
 function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (user === null && window.location.pathname === '/sellerhomepage'){
       navigate('/')
@@ -17,11 +17,11 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
   }, [user])
 
 
-cartItems ? setQuantity(cartItems.length) : null
+  cartItems ? setQuantity(cartItems.length) : null
 
   const handleLogout = async() => {
     const response = await logout()
-    if (response){
+    if (response === null){
       console.log('logged out successfully')
       setUser(null)
       navigate('/')

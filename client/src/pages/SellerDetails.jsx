@@ -1,32 +1,25 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
 import UpdateProduct from '../components/UpdateProduct';
 import { deleteItem } from '../utilities/crudUtilities';
-import { getAnItem } from '../utilities/crudUtilities';
 import {useOutletContext} from 'react-router-dom';
 
 export default function DetailsPage() {
   const { item_id } = useParams()
   const [item, setItem] = useState()
   const[editItem, setEditItem] = useState(false)
-  const {setItems} = useOutletContext()
+  const {setItems ,items } = useOutletContext()
 
   useEffect(()=>{
-   const fetchItem = async()=>{
-    let response = await getAnItem(item_id)
-    if (response){
-      setItem(response)
+    const getItem = () =>{
+      let item = items.find((item) => item.id === parseInt(item_id))
+      setItem(item) 
     }
-    else{
-      console.error("Item not found")
-    }
-  }
-  fetchItem()
+    getItem()
+  },[items, editItem, item_id])
 
-  },[item_id])
 
   return (
     <div className='min-h-screen'>
