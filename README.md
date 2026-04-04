@@ -27,6 +27,9 @@ Day 5 ish:
   Day 7ish:
   backend is pretty much done , endpoints have been tested manually tested with postamn. Now I am writing test files for the app to ensure future testing is accurate and efficent. After testing I'll move to creating all utility functions that call the backend from the react app.
 
+  Day 10ish:
+  Having issues with rendering when state changes and also figuring out how to enable cors so my backend can acess stripe outside of my docker network. Allowing my backend to retrive order status and emails so my frontend can display order sucess or failure messages respectively  Also starting the process of creating a cypress test suite for my frontend.
+
 
 
 

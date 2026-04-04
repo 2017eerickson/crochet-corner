@@ -6,7 +6,8 @@ import { handleUserAuth } from '../utilities/authUtilities';
 // import { useLoaderData } from 'react-router-dom';
 
 const AuthForm = () => {
-    const [user, setUser] = useState({email:"",password:""})
+    const [ ,setUser] = useState({email:"",password:""})
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [create, setCreate] = useState(true)
@@ -18,10 +19,8 @@ const AuthForm = () => {
             "email":email,
             "password": password
         }
-        // let method = create ? 'CREATE ACCT' : 'LOGIN ACCT'
         let user = await handleUserAuth(userDict,create)
         if (user === null){
-            console.log('user', user)
             return 
         }
         
@@ -31,7 +30,7 @@ const AuthForm = () => {
         setPassword('')
         navigate('/sellerhomepage/')
     }
-    console.log('user', user)
+
     return (
         <>
             <Form onSubmit={handleSubmit} className= " flex flex-col jutify-between h-full">

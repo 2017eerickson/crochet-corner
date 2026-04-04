@@ -18,12 +18,11 @@ import './index.css';
 const router = createBrowserRouter([
     {
         path:"/",
-        loader: userConfirmation,
+        loader: getAllItems,
         element: <App />,
         children:[
             {
                 index:true,
-                loader: getAllItems
                 element:<HomePage/>
             },
             {
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
 
             },
              {
-                path:"cart",
+                path:"cart/",
                 element: <CartPage />
             },
             {
@@ -40,19 +39,19 @@ const router = createBrowserRouter([
                 element: <CheckoutForm />
             },
             {
-                path:"orderstatus/:session_id",
+                path:"orderstatus/:session_id/",
                 element: <OrderStatus />
             },
             {
-                path:"sellers",
-                element: <AuthPage />
-            },
-            {
-                path:"customorder",
+                path:"customorder/",
                 element: <CustomOrderPage />
             },
             {
-                path:"sellerhomepage",
+                path:"sellers/",
+                element: <AuthPage />,
+            },
+            {
+                path:"sellerhomepage/",
                 loader: userConfirmation,
                 element: <SellerHomepage />
             },
@@ -64,6 +63,7 @@ const router = createBrowserRouter([
                 path:"sellerhomepage/createproduct",
                 element: <CreateProduct/>
             },
+           
 
         ]
     }

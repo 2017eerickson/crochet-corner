@@ -5,10 +5,12 @@ import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
 import { getAnItem } from '../utilities/crudUtilities';
 import ItemDisplay from '../components/ItemDisplay';
+import { useOutletContext } from 'react-router-dom';
 
 export default function DetailsPage() {
   const { item_id } = useParams()
   const [item, setItem] = useState()
+  const { addToCart } = useOutletContext()
 
   useEffect(()=>{
      const fetchItem = async()=>{
@@ -24,12 +26,14 @@ export default function DetailsPage() {
   
     },[item_id])
 
-  console.log(item)
 
   return (
     <div className='min-h-screen flex justify-center items-center'>
     {item ? 
-      <ItemDisplay item={item} />
+      <ItemDisplay 
+      item={item} 
+      addToCart={addToCart}
+      />
      :
      null
     }

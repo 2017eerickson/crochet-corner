@@ -20,6 +20,7 @@ export const logout = async()=>{
         return null
     }
     else{
+        console.log('logout failed')
         return console.errors(response.errors)
     }
 }
@@ -31,7 +32,6 @@ export const userConfirmation = async() => {
         let response = await api.get('users/')
         if (response.status === 200){
             let user = response.data.email
-            console.log("user confirmed")
             return user
         }
         console.error(response.data)
@@ -49,10 +49,10 @@ export const handleUserAuth = async (data, create) => {
     // Store the token securely (e.g., in localStorage or HttpOnly cookies)
     localStorage.setItem("token", token);
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
-    return response.data.email;
+    return response.data.token;
   }
   alert(response.data)
-  console.log(response.data)
+  console.log("user already exists")
   ;
   return null;
 };
