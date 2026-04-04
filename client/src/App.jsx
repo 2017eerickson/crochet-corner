@@ -11,15 +11,18 @@ function App() {
   const [user, setUser] = useState(null)
   const [items, setItems] = useState(useLoaderData())
   const [cartItems, setCartItems] = useState(localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")) : [])
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(0);
 
   const navigate = useNavigate()
   const location = useLocation()
 
-  useEffect(() => {
-    setQuantity(cartItems.length);
-  }, [cartItems]);
-
+  // useEffect(()=>{
+  //   if (cartItems.length > quantity){
+  //     setQuantity(cartItems.length)
+  //   }
+  // },[cartItems])
+  
+// #change to useseffect
   useState(() => {
    const verifyUser = async() => {
     let user = await userConfirmation()
@@ -43,9 +46,12 @@ function App() {
 
     if (!localCartItemIds){
       localStorage.setItem("cartItems", JSON.stringify([cartItemId]))
+      setCartItems([...cartItems, cartItemId])
     }
     else if( localCartItemIds != null && !localCartItemIds.includes(cartItemId)){
-      localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId]))
+       localStorage.setItem("cartItems", JSON.stringify([...localCartItemIds, cartItemId]))
+       setCartItems([...cartItems, cartItemId])
+
     }
     else{
       alert("item already in cart ")

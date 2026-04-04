@@ -1,10 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , } from 'react-router-dom';
 
-const ItemDisplay = ({items, addToCart ,item}) => {  
+const ItemDisplay = ({items, addToCart ,item, setQuantity, cartItems}) => {  
 
     const navigate = useNavigate()
+
+    const handleAddToCart = (itemId) => {
+        addToCart(itemId)
+        setQuantity(cartItems.length);      
+    }
 
     return (
         <div className=' m-10 flex flex-row justify-center gap-[1vmin] flex-wrap w-[75%] border-2 border-orange-300 p-[5vmin] rounded-xl bg-transparent shadow-xl'>
@@ -18,7 +23,7 @@ const ItemDisplay = ({items, addToCart ,item}) => {
                         <Card.Subtitle className="mb-2 text-muted">Description:{item.desc}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">Color: {item.color}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">Size: {item.size}</Card.Subtitle>
-                        <Button onClick={()=> addToCart(item.id)} variant="success">Add to Cart</Button>
+                        <Button onClick={()=> handleAddToCart(item.id)} variant="success">Add to Cart</Button>
                     </Card.Body>
                 </Card>
             :
@@ -31,7 +36,7 @@ const ItemDisplay = ({items, addToCart ,item}) => {
                         { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }
                         <div className='flex flex-row justify-between'>
                             <Button onClick={()=> navigate(`details/${item.id}/`)} variant="primary">View Details</Button>
-                            <Button onClick={()=> addToCart(item.id)} variant="success">Add to Cart</Button>
+                            <Button onClick={()=> handleAddToCart(item.id)} variant="success">Add to Cart</Button>
                         </div>
                     </Card.Body>
                 </Card>

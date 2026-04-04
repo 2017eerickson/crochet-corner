@@ -7,14 +7,17 @@ import cart from '../assets/cart.png'
 import { useEffect } from 'react';
 import { logout } from '../utilities/authUtilities';
 
-function NavBar({ user, setUser, quantity }) {
+function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
   const navigate = useNavigate();
   
-useEffect(() => {
-  if (user === null && window.location.pathname === '/sellerhomepage'){
-    navigate('/')
-  }
-}, [user])
+  useEffect(() => {
+    if (user === null && window.location.pathname === '/sellerhomepage'){
+      navigate('/')
+    }
+  }, [user])
+
+
+cartItems ? setQuantity(cartItems.length) : null
 
   const handleLogout = async() => {
     const response = await logout()
