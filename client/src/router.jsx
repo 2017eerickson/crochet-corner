@@ -10,6 +10,7 @@ import CartPage from './pages/CartPage'
 import CreateProduct from './pages/CreateProduct'
 import OrderStatus from './pages/OrderStatus'
 import CustomOrderPage from './pages/CustomOrderPage'
+import GalleryPage from './pages/GalleryPage'
 import { getAllItems } from './utilities/crudUtilities'
 import { userConfirmation } from './utilities/authUtilities'
 import './index.css';
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 index:true,
                 element:<HomePage/>
+            },
+            {
+                path:'gallery/',
+                element: <GalleryPage />
             },
             {
                 path:"details/:item_id", 

@@ -16,6 +16,8 @@ export default function CartPage() {
                 cartObjList.push(itemObj)
             })
             setObjLists(cartObjList)
+        }else{
+            setObjLists(null)
         }
     }, [cartItems])
 
@@ -31,7 +33,7 @@ export default function CartPage() {
     <div id='cartItems' className='rounded-xl mx-auto mt-5  w-[90%] h-[50vmin] border-2 border-orange-50  flex flex-row flex-wrap justify-center gap-8 min-h-screen items-center  '>
         <div className='w-[50%] h-[90vmin] border-2 border-pink-700 flex flex-col items-center justify-center rounded-xl bg-transparent shadow-xl'>
         {
-            cartItems.length > 0 ?
+            cartObjList ?
                 cartObjList.map((item)=>(
                 
                 <div key={item.id} className='pt-5  flex flex-row items-center justify-between gap-2 w-[90%] p-4 h-[20vmin] bg-transparent text-amber-50 rounded-xl shadow-xl '>

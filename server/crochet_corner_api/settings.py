@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'checkout_app',
     'cart_app',
     'corsheaders',
+    'custom_order_app',
 ]
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

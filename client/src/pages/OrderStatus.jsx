@@ -8,7 +8,7 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function OrderStatus() {
   const { session_id } = useParams()
-  const{ setCartItems, setQuantity } = useOutletContext()
+  const{ setCartItems } = useOutletContext()
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState(null);
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ export default function OrderStatus() {
   if (status === 'paid'){
     handleUpdatedItem()
     setCartItems([])
-    setQuantity(0)
+    
   }
 
   return (

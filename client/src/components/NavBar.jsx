@@ -47,7 +47,7 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
               <Nav.Link onClick={() => navigate('/')}>
                 Home
               </Nav.Link>
-              <Nav.Link  onClick={() => navigate('/')}>
+              <Nav.Link  onClick={() => navigate('/gallery')}>
                 Gallery
               </Nav.Link>
               <Nav.Link onClick={() => navigate('/customorder')}>

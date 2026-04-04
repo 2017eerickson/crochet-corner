@@ -8,7 +8,7 @@ import {  useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
  
  export default function SellerHomepage() {
-    const { items, user , setUser} = useOutletContext()
+    const { items, user , setUser, setItems} = useOutletContext()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -21,6 +21,18 @@ import { useNavigate, useLocation } from 'react-router-dom';
         navigate('/sellerhomepage')
         )},[user,location.pathname])
 
+    const handleDelete = async (itemId) => {
+        const response = await deleteItem(itemId)
+        if (response){
+            let updatedItems = items.filter((item) => item.id !== itemId)
+            setItems(updatedItems)
+            alert('item deleted successfully')
+
+        }else{
+            alert('failed to delete item')
+        }
+    }
+    
     return (
         <div className='min-h-screen flex flex-col justify-center my-4 items-center'>
         
@@ -39,7 +51,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
                             { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }
                             <div className='flex flex-row justify-between'>
                                 <button  className="bg-blue-200 shadow-lg border-2 border-blue-400 text-black p-2 rounded-xl" onClick={()=> navigate(`sellerdetails/${item.id}/`)} >View Details</button>
-                                <button className="bg-red-800 border-2 border-red-500 text-white p-2 rounded-xl"     onClick={()=> deleteItem(item.id)} >Delete</button>
+                                <button className="bg-red-800 border-2 border-red-500 text-white p-2 rounded-xl"     onClick={()=> handleDelete(item.id)} >Delete</button>
                             </div>
                         </Card.Body>
                     </Card>
