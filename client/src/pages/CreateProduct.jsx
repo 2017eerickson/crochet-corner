@@ -4,16 +4,18 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { createItem } from '../utilities/crudUtilities';
 
 export default function CreateProduct() {
     const [newItem, setNewItem] = useState({})
+    const{setItems, items} = useOutletContext()
     const navigate = useNavigate()
 
     const handleSave =async () => {
         let createdItem = await createItem(newItem)
         if(createdItem){
+            setItems([...items, createdItem])
             navigate('/sellerhomepage')
         }else{
             console.error('Failed to create item')

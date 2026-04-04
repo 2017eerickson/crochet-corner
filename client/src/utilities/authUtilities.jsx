@@ -16,7 +16,7 @@ export const logout = async()=>{
     localStorage.removeItem("token");
 
     if (response.status == 200){
-        console.log('logged out ')
+        console.log('token deleted successfully')
         return null
     }
     else{
