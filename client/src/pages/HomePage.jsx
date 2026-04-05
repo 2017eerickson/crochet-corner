@@ -14,7 +14,8 @@ const HomePage = () => {
         }
         filterItemsForSale()
      },[items])
-     console.log(itemsForSale)
+
+     
     return (
         <div className='min-h-screen items-center flex flex-col'>
             {

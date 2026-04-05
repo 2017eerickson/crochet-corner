@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import cart from '../assets/cart.png'
-import { useEffect } from 'react';
+import {useEffect } from 'react';
 import { logout } from '../utilities/authUtilities';
 
 function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
@@ -16,8 +16,11 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
     }
   }, [user])
 
+  
+  cartItems ? setQuantity(cartItems.length) : setQuantity(0)
 
-  cartItems ? setQuantity(cartItems.length) : null
+
+  
 
   const handleLogout = async() => {
     const response = await logout()
@@ -56,7 +59,7 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
             </Nav>
             <button className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
               <img src={cart} width={"30vmin"}   />
-              <p className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
+              <p id='cartQuantity' className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
             </button> 
             <Button onClick={() => navigate('/sellers')} variant="outline-primary">Login</Button>
           </Navbar.Collapse>
