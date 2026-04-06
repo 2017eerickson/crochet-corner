@@ -42,8 +42,8 @@ export default function CreateProduct() {
                 />
             </Form.Group>
         </div>
-            <Card.Body classsName=''>
-            <InputGroup className="mb-3">
+            <Card.Body >
+            <InputGroup id='itemName' className="mb-3">
                 <h5>Name:</h5>
                 <Form.Control
                 placeholder='product name'
@@ -51,7 +51,7 @@ export default function CreateProduct() {
                 onChange={(e) => setNewItem({...newItem, name: e.target.value})}
                 />
             </InputGroup>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Group id= 'descriptionInput' className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <h5>Description:</h5>
                 <Form.Control as="textarea" 
                 rows={3} 
@@ -60,7 +60,7 @@ export default function CreateProduct() {
                 value={newItem.desc}
                 />
             </Form.Group>
-            <InputGroup className="mb-3">
+            <InputGroup id="itemPrice" className="mb-3">
                 <h5>Price:</h5>
                 <Form.Control
                 aria-label="Example text with button addon"
@@ -105,7 +105,7 @@ export default function CreateProduct() {
             </InputGroup>
                 <div className='flex flex-row justify-between'>
                     <Button onClick={()=> navigate('/sellerhomepage') } variant="secondary">Cancel</Button>
-                    <Button onClick={()=> handleSave()} variant="danger">Save</Button>
+                    <Button id='saveBtn' onClick={()=> handleSave()} variant="danger">Save</Button>
                 </div>
             </Card.Body>
         </Card>

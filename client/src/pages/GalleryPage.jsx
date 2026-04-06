@@ -17,7 +17,7 @@ export default function Gallery() {
   return (
     <div>
         <h1 className='text-4xl text-center mt-10'>Gallery</h1>
-        <div className='min-h-screen items-center flex flex-col'>
+        <div id='galleryItems' className='min-h-screen items-center flex flex-col'>
             {
                 galleryItems?
                 <ItemDisplay 

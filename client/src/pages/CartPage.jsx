@@ -31,7 +31,7 @@ export default function CartPage() {
 
   return (
     <div id='cartItems' className='rounded-xl mx-auto mt-5  w-[90%] h-[50vmin] border-2 border-orange-50  flex flex-row flex-wrap justify-center gap-8 min-h-screen items-center  '>
-        <div className='w-[50%] h-[90vmin] border-2 border-pink-700 flex flex-col items-center justify-center rounded-xl bg-transparent shadow-xl'>
+        <div id='cartItemContainer' className='w-[50%] h-[90vmin] border-2 border-pink-700 flex flex-col items-center justify-center rounded-xl bg-transparent shadow-xl'>
         {
             cartObjList ?
                 cartObjList.map((item)=>(
@@ -40,7 +40,7 @@ export default function CartPage() {
                     <img src={`http://localhost/${item.photo}`} className='w-[20%] rounded-full'/>
                     <h3>{item.name}</h3>
                     <h5>${item.price}</h5>
-                    <h2><button onClick={() => rmFromCart(item.id)}>X</button></h2>
+                    <h2><button id='removeFromCartBtn' onClick={() => rmFromCart(item.id)}>X</button></h2>
                 </div>    
                 ))
                 :

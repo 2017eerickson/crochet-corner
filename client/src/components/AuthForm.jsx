@@ -10,7 +10,7 @@ const AuthForm = () => {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [create, setCreate] = useState(true)
+    const [create, setCreate] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
@@ -34,7 +34,7 @@ const AuthForm = () => {
     return (
         <>
             <Form onSubmit={handleSubmit} className= " flex flex-col jutify-between h-full">
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group  id="loginEmail" className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
                         type="email" 
@@ -47,7 +47,7 @@ const AuthForm = () => {
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group  id="loginPassword" className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         type="password" 
@@ -57,16 +57,16 @@ const AuthForm = () => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check 
                         type="checkbox" 
                         label={create ? "CREATE ACCOUNT" : "LOG IN"} 
                         checked={create}
                         onChange={(e)=>setCreate(e.target.checked)}
                     />
-                </Form.Group>
+                </Form.Group> */}
 
-                <Button variant="primary" type="submit">
+                <Button  id='loginSubmitBtn' variant="primary" type="submit">
                     {create ? "CREATE ACCOUNT" : "LOG IN"} 
                 </Button>
             </Form>

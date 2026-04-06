@@ -16,14 +16,7 @@ function App() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // useEffect(()=>{
-  //   if (cartItems.length > quantity){
-  //     setQuantity(cartItems.length)
-  //   }
-  // },[cartItems])
-  
-// #change to useseffect
-  useState(() => {
+  useEffect(() => {
    const verifyUser = async() => {
     let user = await userConfirmation()
     if (user){  
