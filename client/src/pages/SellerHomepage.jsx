@@ -1,6 +1,5 @@
 import React from 'react'
 import { useOutletContext } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { deleteItem } from '../utilities/crudUtilities';
 import { useLoaderData } from 'react-router-dom';
@@ -17,8 +16,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
     useEffect(()=>{
         if (!user && location.pathname === '/sellerhomepage'){
           navigate('/')}
-       else(
-        navigate('/sellerhomepage')
+        else(
+            navigate('/sellerhomepage')
         )},[user,location.pathname])
 
     const handleDelete = async (itemId) => {

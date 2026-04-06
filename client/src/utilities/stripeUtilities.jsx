@@ -13,7 +13,7 @@ export const fetchClientSecret = async (cartItems) => {
         }
         else{
             console.error(response.data)
-            return response.errors 
+            return null 
         }
     }
 export const fetchSessionDetails = async (session_id) => {

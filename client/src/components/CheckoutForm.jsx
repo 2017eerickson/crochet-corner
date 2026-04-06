@@ -4,17 +4,15 @@ import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout
 } from '@stripe/react-stripe-js';
-// import { fetchClientSecret } from '../utilities/stripeUtilities';
-import axios from 'axios';
+import { fetchClientSecret } from '../utilities/stripeUtilities';
 
 const stripePromise = loadStripe("pk_test_51TC2FmD53YbrJkK54R7IqgvcQbG7GgXAFyNr755oMAYElk6CipXJkpARmVHwDAvSqXhAj2w8kHmVhAjayYWK3U0a00SKeTAVl3");
 
 function CheckoutForm() {
   let cartItems = JSON.parse(localStorage.getItem("cartItems"))
 
-  const fetchClientSecret = useCallback(async() => {
-    // Create a Checkout Session
-    const response = await axios.post('api/v1/checkout/', {'cart_items': cartItems});
+  const fetchSecret = useCallback(async() => {
+    const response = await fetchClientSecret(cartItems);
     if (response.status === 200) {
       return response.data.clientSecret;
     } else {
@@ -22,7 +20,7 @@ function CheckoutForm() {
       return null;
     } 
   }, []);
-  const options = {fetchClientSecret};
+  const options = {fetchSecret};
 
   return (
     <div className=' min-h-screen w-2/3 h-2/3 flex flex-row  justify-center mx-auto mt-8'>

@@ -46,7 +46,6 @@ export const handleUserAuth = async (data, create) => {
   );
   if (response.status === 201 || response.status === 200) {
     let token = response.data.token;
-    // Store the token securely (e.g., in localStorage or HttpOnly cookies)
     localStorage.setItem("token", token);
     api.defaults.headers.common["Authorization"] = `Token ${token}`;
     return response.data.token;

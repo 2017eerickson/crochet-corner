@@ -4,8 +4,10 @@ import ItemDisplay from '../components/ItemDisplay'
 import { useState } from 'react'
 
 export default function Gallery() {
+
   const { items , addToCart, setQuantity, cartItems, quantity} = useOutletContext()
   const [galleryItems, setGalleryItems] = useState(null)
+  
   useEffect(()=>{
     const filterGalleryItems = () => {
       let filteredItems = items.filter((item) => item.sold === true)

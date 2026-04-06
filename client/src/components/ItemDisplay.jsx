@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate , } from 'react-router-dom';
 
 const ItemDisplay = ({items, addToCart ,item}) => {  
-
+    
     const navigate = useNavigate()
 
     const handleAddToCart = (itemId) => {
