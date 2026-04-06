@@ -7,7 +7,6 @@ export const api = axios.create({
 
 export const deleteItem = async(id)=>{
     let response = await api.delete(`items/${id}/`)
-        alert( response.data)
         return response.data
 }
 

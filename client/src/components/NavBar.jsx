@@ -16,7 +16,6 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
     }
   }, [user])
 
-  
   cartItems.length ? setQuantity(cartItems.length) : setQuantity(0)
 
   const handleLogout = async() => {

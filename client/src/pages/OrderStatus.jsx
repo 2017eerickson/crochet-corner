@@ -4,17 +4,15 @@ import { useState, useEffect } from 'react';
 import { fetchSessionDetails } from '../utilities/stripeUtilities';
 import { editItem } from '../utilities/crudUtilities';
 import { useOutletContext } from 'react-router-dom';
-import { getAllItems } from '../utilities/crudUtilities';
 
 
 export default function OrderStatus() {
   const { session_id } = useParams()
-  const{ setCartItems , setItems, Items} = useOutletContext()
+  const{ setCartItems ,Items} = useOutletContext()
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState(null);
   const navigate = useNavigate()
 
-// http://localhost/orderstatus/cs_test_b1pE99sPwIeubBzYCM4uLinWCNMkjoOjQuMofwH1usXrHzioFSQeAWFGNG/
   
   useEffect(()=>{
     const handleSessionDetails = async ()=>{
@@ -39,6 +37,7 @@ export default function OrderStatus() {
     localStorage.removeItem("cartItems")
     }
   }
+  
   if (status === 'paid'){
     handleUpdatedItem()
     setCartItems([])

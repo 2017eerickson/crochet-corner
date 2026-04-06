@@ -1,7 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
 import { getAnItem } from '../utilities/crudUtilities';
 import ItemDisplay from '../components/ItemDisplay';

@@ -2,7 +2,7 @@ Crochet Corner :
 
   To run crochet corners backend you'll need to make an account with stripe to obtain a stripe public and secret key that would be in an .env file under STRIPE_SECRET_KEY  and STRIPE_PUBLISHABLE_KEY . They are refernceced in project settings and the checkout app views.py and should enable everything to work on the backend.
 
-  For the front end when testing stripe checkout use the card number 4242 4242 4242 4242 with any expiration date and any cvc number. This is from stripe to test a sucesssful payment. Also when for login to the the seller page please use the username test@test.com with password as the password.
+  For the front end in the 'CheckoutForm' component there is a varablie named 'stripePromise' that  has a testing api key passed into the loadstripe function . When making a stripe account you can go into sandbox testing mode where they provide you a key to insert here. It should start with 'pk_test '. When testing stripe checkout use the card number 4242 4242 4242 4242 with any expiration date and any cvc number. The card number is from stripe to test a sucesssful payment. Also for login to the the seller page please use the username test@test.com with password as the password.
 
   This is an ecommerce app built with a React frontend , a Django backend and a Postgres database all 
   wrapped up in a docker network utilzling nginx to navigate browser traffic to the frontend and backend

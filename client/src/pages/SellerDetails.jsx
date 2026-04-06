@@ -8,9 +8,9 @@ import {useOutletContext} from 'react-router-dom';
 
 export default function DetailsPage() {
   const { item_id } = useParams()
+  const {setItems ,items } = useOutletContext()
   const [item, setItem] = useState()
   const[editItem, setEditItem] = useState(false)
-  const {setItems ,items } = useOutletContext()
 
   useEffect(()=>{
     const getItem = () =>{
