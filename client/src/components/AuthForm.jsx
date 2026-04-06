@@ -10,7 +10,7 @@ const AuthForm = () => {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [create, setCreate] = useState(true)
+    const [create, setCreate] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
@@ -57,14 +57,14 @@ const AuthForm = () => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check 
                         type="checkbox" 
                         label={create ? "CREATE ACCOUNT" : "LOG IN"} 
                         checked={create}
                         onChange={(e)=>setCreate(e.target.checked)}
                     />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Button  id='loginSubmitBtn' variant="primary" type="submit">
                     {create ? "CREATE ACCOUNT" : "LOG IN"} 

@@ -1,13 +1,16 @@
 Crochet Corner :
+
+  To run crochet corners backend you'll need to make an account with stripe to obtain a stripe public and secret key that would be in an .env file under STRIPE_SECRET_KEY  and STRIPE_PUBLISHABLE_KEY . They are refernceced in project settings and the checkout app views.py and should enable everything to work on the backend.
+
+  For the front end when testing stripe checkout use the card number 4242 4242 4242 4242 with any expiration date and any cvc number. This is from stripe to test a sucesssful payment. Also when for login to the the seller page please use the username test@test.com with password as the password.
+
   This is an ecommerce app built with a React frontend , a Django backend and a Postgres database all 
   wrapped up in a docker network utilzling nginx to navigate browser traffic to the frontend and backend
   respectivley. While also utlizing gunicorn to ensure the backend maintains robustness under heavy request traffic.
     
   "Crochet Corner, is an intentional marketplace for 1-of-1 handmade gifts. We’re the antidote to 
-  'fast fashion'—connecting conscious shoppers with small business owners through unique crochet pieces 
+  'fast fashion'; connecting conscious shoppers with small business owners through unique crochet pieces 
   you won't find anywhere else. Don't just buy a gift; buy the only one in existence."
-
-  To run crochet corner you'll need to make an account with stripe to obtain a stripe testing key that would be in an env file and when refernceced in project setting should enable everything to work.
 
 
 Day 1 ish :

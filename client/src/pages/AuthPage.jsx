@@ -15,7 +15,7 @@ const AuthPage = () => {
     return (
         <div className='min-h-screen'>
         <Card  className="w-[80vmin] h-[80vmin] mx-auto mt-5 p-3  border-2 rounded-2xl shadow-xl ">
-            <h1>Seller Login and signup </h1>
+            <h1>Seller Login </h1>
             <AuthForm setUser={setUser} user={user} />
         </Card>
            
