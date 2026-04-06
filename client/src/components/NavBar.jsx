@@ -17,10 +17,7 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
   }, [user])
 
   
-  cartItems ? setQuantity(cartItems.length) : setQuantity(0)
-
-
-  
+  cartItems.length ? setQuantity(cartItems.length) : setQuantity(0)
 
   const handleLogout = async() => {
     const response = await logout()
@@ -57,7 +54,7 @@ function NavBar({ user, setUser, quantity, cartItems, setQuantity}) {
                 Custom Order Form 
               </Nav.Link>
             </Nav>
-            <button className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
+            <button id='cartButton' className='mx-5 flex flex-row' onClick={() => navigate('/cart')}>
               <img src={cart} width={"30vmin"}   />
               <p id='cartQuantity' className='border-2 h-6 w-6 rounded-full'>{quantity}</p>
             </button> 

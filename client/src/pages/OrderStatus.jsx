@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { fetchSessionDetails } from '../utilities/stripeUtilities';
 import { editItem } from '../utilities/crudUtilities';
 import { useOutletContext } from 'react-router-dom';
+import { getAllItems } from '../utilities/crudUtilities';
 
 
 export default function OrderStatus() {
   const { session_id } = useParams()
-  const{ setCartItems } = useOutletContext()
+  const{ setCartItems , setItems, Items} = useOutletContext()
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState(null);
   const navigate = useNavigate()

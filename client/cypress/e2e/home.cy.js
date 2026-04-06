@@ -1,30 +1,46 @@
+import CartPage from "../../src/pages/CartPage"
+
 describe('Home Page', () => {
     it('should display all items for sale ', () => {
         cy.visit('/')
         cy.get('#itemDisplay').children().should('have.length', 3)
     })
-    it('should display item details when view details button is clicked', () => {
+   
+    it('should update cart quantity display in navbar when item is added to cart from homepage', () => {
         cy.visit('/')
-        cy.get('#viewDetailsBtn').click()
-        cy.get('#productDetails').should('exist')
-    })
-    it('should add item to cart when add to cart button is clicked on detail page', () => {
+        cy.get('#addToCartBtn').first().click()
+        //checks value in cart quantity display in navbar updates to 1
+        cy.get('#cartQuantity').should('have.text',  '1')
+    })  
+    it('should not add duplicate items to cart', () => {
         cy.visit('/')
         cy.get('#viewDetailsBtn').click()
         cy.get('#addToCartBtn').click()
-        //checks value in cart quantity display in navbar updates to 1
-        cy.get('#cartQuantity').should('have.text',  '1')
-    })
+        //checks that alert is displayed when trying to add duplicate item to cart
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal('item already in cart ')
+          })
     
+    })
 })
 
-// need test for all items for sale displaying
-//need test for viewing item details 
-//need test for adding item to cart via detail page 
-//test that cart quantitiy updates upon addition of cart item 
-//test that you cant add duplicate items to cart 
-//test adding item from homepage chages cart quanitty display 
-//test that both item are displayed on cart page 
+describe('Gallery Page', () => {
+     // it('should display items sold items', () => {
+    //     cy.visit('/gallery')
+    //     //check tht there ate to itens displayed on gallery page 
+
+    //     cy.get('#galleryItems').children().should('have.length', 2)
+    // })
+})
+
+describe('Seller Details Page', () => {})
+describe('Edit Item Page', () => {})
+describe('Create Item Page', () => {})
+describe('Delete Item', () => {})
+describe('Logout', () => {})
+       
+
+
 //test that checkout button and stripe works
 //test that after payment orderstatus page is displayed 
 //test login take you to seller home page 

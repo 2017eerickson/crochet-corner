@@ -2,13 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate , } from 'react-router-dom';
 
-const ItemDisplay = ({items, addToCart ,item, setQuantity, cartItems}) => {  
+const ItemDisplay = ({items, addToCart ,item}) => {  
 
     const navigate = useNavigate()
 
     const handleAddToCart = (itemId) => {
         addToCart(itemId)
-        setQuantity(cartItems.length);      
     }
 
     return (
@@ -30,7 +29,7 @@ const ItemDisplay = ({items, addToCart ,item, setQuantity, cartItems}) => {
             items.length > 0 ?
                 items.map((item)=>( 
                 <Card id='product'  className=' border-2 w-[50vmin] shadow-xl  bg-transparent flex flex-col justify-between rounded-xl ' > 
-                    <Card.Img className="p-4 rounded-full w-[40vmin] h-[40vmin] object-cover " variant="top" src={`http://localhost/${item.photo}`}/>
+                    <Card.Img className="p-4 rounded-full w-[40vmin] h-[50vmin] object-cover " variant="top" src={`http://localhost/${item.photo}`}/>
                     <Card.Body className='flex flex-col justify-between '>
                         <Card.Title>{item.name}</Card.Title>
                         { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }

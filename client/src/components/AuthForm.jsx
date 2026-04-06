@@ -34,7 +34,7 @@ const AuthForm = () => {
     return (
         <>
             <Form onSubmit={handleSubmit} className= " flex flex-col jutify-between h-full">
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group  id="loginEmail" className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
                         type="email" 
@@ -47,7 +47,7 @@ const AuthForm = () => {
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group  id="loginPassword" className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         type="password" 
@@ -66,7 +66,7 @@ const AuthForm = () => {
                     />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button  id='loginSubmitBtn' variant="primary" type="submit">
                     {create ? "CREATE ACCOUNT" : "LOG IN"} 
                 </Button>
             </Form>

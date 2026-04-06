@@ -40,14 +40,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
         <button onClick={()=> navigate('createproduct/')}  className='my-4 w-[60vmin] h-[5vmin] bg-orange-600 text-white border-4 border-pink-700 rounded-xl shadow-lg'>Create New Product</button>
         {/* search bar  */}
         
-            <div className=' m-2 flex flex-row justify-center gap-[1vmin] flex-wrap w-[85%] border-2 border-orange-300 p-[5vmin] rounded-xl bg-transparent shadow-xl'>
+            <div id='sellerDisplay' className=' m-2 flex flex-row justify-center gap-[1vmin] flex-wrap w-[85%] border-2 border-orange-300 p-[5vmin] rounded-xl bg-transparent shadow-xl'>
             {
                 items.length > 1 ?
                 items.map((item)=>( 
                 <Card className=' w-[40vmin] shadow-xl bg-transparent flex flex-col justify-between rounded-xl border-5 border-orange-800'>
                     <Card.Img className=" p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
                         <Card.Body className='flex flex-col justify-between'>
-                            <Card.Title>{item.name}</Card.Title>
+                            <Card.Title >{item.name}</Card.Title>
                             { !item.sold? <Card.Title className=" mb-2 text-muted">${item.price}</Card.Title> : <Card.Title className="mb-2 text-red ">Sold out</Card.Title> }
                             <div className='flex flex-row justify-between'>
                                 <button  className="bg-blue-200 shadow-lg border-2 border-blue-400 text-black p-2 rounded-xl" onClick={()=> navigate(`sellerdetails/${item.id}/`)} >View Details</button>

@@ -24,10 +24,10 @@ export default function DetailsPage() {
   return (
     <div className='min-h-screen'>
     {item  && editItem === false? 
-      <Card   className='shadow-xl w-xl  mx-auto  bg-pink-50 mt-10'>
+      <Card id="sellerDetailDisplay"  className='shadow-xl w-xl  mx-auto  bg-pink-50 mt-10'>
           <Card.Img  className= "p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
           <Card.Body classsName=''>
-              <Card.Title>{item.name}</Card.Title>
+              <Card.Title id="sellerDetailsName" >{item.name}</Card.Title>
               { !item.sold? <Card.Subtitle className="mb-2 text-muted">${item.price}</Card.Subtitle> : <Card.Subtitle className="mb-2 text-muted">Sold</Card.Subtitle> }
               <Card.Subtitle className="mb-2 text-muted">Description:{item.desc}</Card.Subtitle>
               <Card.Subtitle className="mb-2 text-muted">Color: {item.color}</Card.Subtitle>

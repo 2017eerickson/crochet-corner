@@ -7,6 +7,8 @@ Crochet Corner :
   'fast fashion'—connecting conscious shoppers with small business owners through unique crochet pieces 
   you won't find anywhere else. Don't just buy a gift; buy the only one in existence."
 
+  To run crochet corner you'll need to make an account with stripe to obtain a stripe testing key that would be in an env file and when refernceced in project setting should enable everything to work.
+
 
 Day 1 ish :
   I began with getting all my idead out onto virtual paper (tldraw) and then orginazed it with the fulllstack in mind.
@@ -30,7 +32,8 @@ Day 5 ish:
   Day 10ish:
   Having issues with rendering when state changes and also figuring out how to enable cors so my backend can acess stripe outside of my docker network. Allowing my backend to retrive order status and emails so my frontend can display order sucess or failure messages respectively  Also starting the process of creating a cypress test suite for my frontend.
 
-
+  Day 14ish:
+  wrote cypress tests for frontend and worked on fixing state rendering fixes. Also started to add a custom order feature starting by creating a model for it and an api endpoint to retrive and create order request. 
 
 
 

@@ -26,7 +26,7 @@ export default function UpdateProduct({item, setItems, setEditItem}) {
   return (
     <div className='  min-h-screen mx-auto'>
     
-            <Card   className='shadow-xl p-10vmin w-xl mx-auto mt-10'>
+            <Card id="sellerDetailDisplay"   className='shadow-xl p-10vmin w-xl mx-auto mt-10'>
               <Card.Img className= "p-4 rounded-full" variant="top" src={`http://localhost/${item.photo}`}/>
             <div className='mt-5'>
                  <Form.Group controlId="formFile" className="mb-3">
@@ -38,8 +38,8 @@ export default function UpdateProduct({item, setItems, setEditItem}) {
                  />
                 </Form.Group>
             </div>
-              <Card.Body classsName=''>
-                <InputGroup className="mb-3">
+              <Card.Body  classsName=''>
+                <InputGroup id="itemName" className="mb-3">
                     <h5>Name:</h5>
                     <Form.Control
                     placeholder={item.name}
@@ -74,7 +74,8 @@ export default function UpdateProduct({item, setItems, setEditItem}) {
                     value={updatedItem.color}
                     onChange={(e) => setUpdatedItem({...updatedItem, color: e.target.value})}
                     />
-                </InputGroup><InputGroup className="mb-3 flex flex-row items-center justify-between">
+                </InputGroup>
+                <InputGroup className="mb-3 flex flex-row items-center justify-between">
                     <h5>Size:</h5>
                     <Form.Control
                     placeholder={item.size}
